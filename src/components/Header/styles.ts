@@ -18,6 +18,19 @@ export const HeaderContent = styled.div`
     }
 `
 
+export const LogoContainer = styled.div`
+    display:flex;
+    flex-direction:column;
+        span{
+            text-align:center;
+            font-size:1.2rem;
+            font-weight:800;
+            font-style:italic;
+            color:${props => props.theme['white-neve']};
+            filter:drop-shadow(4px 4px 4px ${props => props.theme['black']})
+        }
+`
+
 export const SearchContent = styled.div`
     display:flex;
     align-items:center;

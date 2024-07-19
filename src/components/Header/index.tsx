@@ -1,4 +1,4 @@
-import { CartContainer, HeaderContainer, HeaderContent, SearchContent } from "./styles"
+import { CartContainer, HeaderContainer, HeaderContent, LogoContainer, SearchContent } from "./styles"
 import { FaSearch } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 
@@ -7,6 +7,10 @@ export const Header = () => {
     return (
         <HeaderContainer>
             <HeaderContent>
+                <LogoContainer>
+                    <span>Mercadinho <br /></span>
+                    <span>do Gui</span>
+                </LogoContainer>
                 <SearchContent>
                     <form>
                         <input
