@@ -3,6 +3,7 @@ import { Router } from "./routes/router"
 import { ThemeProvider } from "styled-components"
 import { defaultTheme } from "./styles/themes/default"
 import { GlobalStyle } from "./styles/globalstyle"
+import { ProductsProvider } from "./context/ProductsContext"
 
 function App() {
 
@@ -10,7 +11,9 @@ function App() {
     <>
       <ThemeProvider theme={defaultTheme}>
         <GlobalStyle />
-        <RouterProvider router={Router} />
+        <ProductsProvider>
+          <RouterProvider router={Router} />
+        </ProductsProvider>
       </ThemeProvider>
     </>
   )

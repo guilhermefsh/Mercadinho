@@ -1,15 +1,27 @@
 import styled from "styled-components";
 
 export const HomeContent = styled.section`
+    margin:1rem 1rem;
     h1{
         text-align:center;
         text-transform:uppercase;
-        margin-top:1rem;
+        margin:1rem 0;
         font-size:2.5rem;
+    }
+
+    @media(max-width:474px){
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
     }
 `
 
 export const ProductsContainer = styled.div`
+
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
+    gap:40px;
 
     div{
         width:200px;
@@ -25,17 +37,20 @@ export const ProductsContainer = styled.div`
 export const InfoProducts = styled.div`
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    height:200px;
+    justify-content:space-around;
     padding:.5rem;
     border-top:1px solid ${props => props.theme['gray-100']};
 
     span{
-        text-align:left;
+        font-weight:bold;
+        text-align:center;
+        font-size:1.4rem;
     }
     p{
         text-align:center;
-        font-size:1.2rem;
-        font-weight:600;
+        font-size:1.1rem;
+        max-width:180px;
     }
 
     button{
