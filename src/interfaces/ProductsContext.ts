@@ -5,6 +5,8 @@ export interface ProductContextProps {
     setProducts: Dispatch<SetStateAction<ProductsProps[]>>;
     loading: boolean;
     setLoading: Dispatch<SetStateAction<boolean>>;
+    search: string;
+    setSearch: Dispatch<SetStateAction<string>>;
 }
 
 export interface ProductsProps {

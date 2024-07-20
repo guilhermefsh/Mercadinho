@@ -2,34 +2,19 @@
 import { useContext, useEffect } from "react"
 import { HomeContent, InfoProducts, OldPrice, ProductsContainer } from "./styles"
 import { ProductsContext } from "../../context/ProductsContext"
-import { api } from "../../lib/axios";
 import { FormatCurrency } from "../../utils/formatCurrency";
 import { Loader } from "../../components/Loader";
+import { useFetchProducts } from "../../hooks/useFetchProducts";
 
 export const Home = () => {
 
-    const { products, setProducts, loading, setLoading } = useContext(ProductsContext);
+    const { products, loading, search } = useContext(ProductsContext);
+    const { fetchProducts } = useFetchProducts();
 
     useEffect(() => {
-        fetchProducts('book3');
+        fetchProducts(search);
     }, [])
 
-    async function fetchProducts(query?: string) {
-        try {
-            setLoading(true)
-            const response = await api.get('', {
-                params: {
-                    q: query
-                }
-            })
-            setProducts(response.data.results);
-            console.log(response.data.results);
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setLoading(false)
-        }
-    }
 
     return (
         <main>

@@ -4,13 +4,23 @@ import { ContextProvider, ProductContextProps, ProductsProps } from "../interfac
 
 export const ProductsContext = createContext({} as ProductContextProps);
 
+
 export const ProductsProvider = ({ children }: ContextProvider) => {
 
-    const [products, setProducts] = useState<ProductsProps[]>([]);
     const [loading, setLoading] = useState(true);
+    const [products, setProducts] = useState<ProductsProps[]>([]);
+    const [search, setSearch] = useState<string>('book3')
+
 
     return (
-        <ProductsContext.Provider value={{ setProducts, products, loading, setLoading }}>
+        <ProductsContext.Provider value={{
+            setProducts,
+            products,
+            loading,
+            setLoading,
+            search,
+            setSearch
+        }}>
             {children}
         </ProductsContext.Provider>
     )

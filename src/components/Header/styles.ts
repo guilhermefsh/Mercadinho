@@ -19,10 +19,8 @@ export const HeaderContent = styled.div`
 `
 
 export const LogoContainer = styled.div`
-    display:flex;
-    flex-direction:column;
+    text-align:center;
         span{
-            text-align:center;
             font-size:1.2rem;
             font-weight:800;
             font-style:italic;
