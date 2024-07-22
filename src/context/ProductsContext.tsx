@@ -13,6 +13,13 @@ export const ProductsProvider = ({ children }: ContextProvider) => {
     const [cartItem, setCartItems] = useState<ProductsProps[]>([]);
     const [sideBarVisible, setSideBarVisible] = useState(false);
 
+    const updateCartItemQuantity = (id: string, newQuantity: number) => {
+        const updatedCartItems = cartItem.map(item =>
+            item.id === id ? { ...item, quantity: newQuantity } : item
+        );
+        setCartItems(updatedCartItems);
+    };
+
     return (
         <ProductsContext.Provider value={{
             setProducts,
@@ -24,7 +31,8 @@ export const ProductsProvider = ({ children }: ContextProvider) => {
             cartItem,
             setCartItems,
             sideBarVisible,
-            setSideBarVisible
+            setSideBarVisible,
+            updateCartItemQuantity
         }}>
             {children}
         </ProductsContext.Provider>

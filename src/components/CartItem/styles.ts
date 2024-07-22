@@ -37,3 +37,14 @@ export const CartItemContainer = styled.section`
         cursor: pointer;
     }
 `
+
+export const AddNewProductContainer = styled.div`
+    display:flex;
+    justify-content:left;
+    align-items:center;
+    gap:8px;
+
+    i{
+        cursor: pointer;
+    }
+`

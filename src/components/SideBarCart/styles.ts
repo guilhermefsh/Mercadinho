@@ -1,21 +1,34 @@
 import styled from "styled-components";
 
+export const Overlay = styled.div<{ visible: boolean }>`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); // Preto com 50% de opacidade
+    opacity: ${({ visible }) => (visible ? 1 : 0)};
+    pointer-events: ${({ visible }) => (visible ? 'auto' : 'none')};
+    transition: opacity 0.5s ease-in-out;
+    z-index: 10; // Deve estar acima da sidebar
+`;
 
 export const SideBarCartContainer = styled.aside<{ visible: boolean }>`
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    width:100%;
-    max-width:330px;
-    height:100vh;
-    padding:0px 20px 20px;
-    position:fixed;
-    top:0;
-    right:0;
-    background-color:${props => props.theme['white']};
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 330px;
+    height: 100vh;
+    padding: 0px 20px 20px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: ${props => props.theme['white']};
     transform: ${({ visible }) => (visible ? "translateX(0)" : "translateX(100%)")};
     transition: transform 1s ease-in-out;
-`
+    z-index: 20;
+`;
 
 export const TitleCart = styled.div`
     display:flex;
