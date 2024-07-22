@@ -15,6 +15,7 @@ export const defaultTheme = {
     'red': '#FD3500',
 
     'blue': '#0065ED',
+    'blueHover': '#1E90FF',
 
     'green-500': '#008000',
 

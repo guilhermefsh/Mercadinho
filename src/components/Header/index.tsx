@@ -4,11 +4,12 @@ import { FaSearch } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import { ProductsContext } from "../../context/ProductsContext";
 import { useFetchProducts } from "../../hooks/useFetchProducts";
+import { SideBarCart } from "../SideBarCart";
 
 
 export const Header = () => {
 
-    const { setSearch, search } = useContext(ProductsContext);
+    const { setSearch, search, cartItem, setSideBarVisible, sideBarVisible } = useContext(ProductsContext);
     const { fetchProducts } = useFetchProducts();
 
     function HandleSearch(e: React.FormEvent<HTMLFormElement>) {
@@ -39,13 +40,13 @@ export const Header = () => {
                 </SearchContent>
 
                 <CartContainer>
-                    <button>
+                    <button onClick={() => setSideBarVisible(!sideBarVisible)}>
                         <FaCartShopping size={30} color="white" />
-                        <span>1</span>
+                        {cartItem.length > 0 && <span>{cartItem.length}</span>}
                     </button>
                 </CartContainer>
-
             </HeaderContent>
+            <SideBarCart />
         </HeaderContainer>
     )
 }

@@ -13,7 +13,6 @@ export const useFetchProducts = () => {
                 }
             })
             setProducts(response.data.results);
-            console.log(response.data.results);
         } catch (error) {
             console.log(error);
         } finally {

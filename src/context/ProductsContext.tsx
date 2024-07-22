@@ -10,7 +10,8 @@ export const ProductsProvider = ({ children }: ContextProvider) => {
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState<ProductsProps[]>([]);
     const [search, setSearch] = useState<string>('book3')
-
+    const [cartItem, setCartItems] = useState<ProductsProps[]>([]);
+    const [sideBarVisible, setSideBarVisible] = useState(false);
 
     return (
         <ProductsContext.Provider value={{
@@ -19,7 +20,11 @@ export const ProductsProvider = ({ children }: ContextProvider) => {
             loading,
             setLoading,
             search,
-            setSearch
+            setSearch,
+            cartItem,
+            setCartItems,
+            sideBarVisible,
+            setSideBarVisible
         }}>
             {children}
         </ProductsContext.Provider>
