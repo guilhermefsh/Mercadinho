@@ -3,13 +3,19 @@ import { FormatCurrency } from "../../utils/formatCurrency";
 import { OldPrice, InfoProducts } from "./styles";
 import { ProductsContext } from "../../context/ProductsContext";
 import { ProductsProps } from "../../interfaces/ProductsContext";
+import { toast } from "react-toastify";
 
 export const ProductCard = () => {
 
     const { products, cartItem, setCartItems } = useContext(ProductsContext)
 
     const handleAddToCart = (product: ProductsProps) => {
-        setCartItems([...cartItem, product])
+        try {
+            setCartItems([...cartItem, product])
+            toast.success('Produto adicionado ao carrinho')
+        } catch (error) {
+            toast.error('ocorreu um erro ao adicionar o produto no carrinho')
+        }
     }
 
     return (
