@@ -22,7 +22,7 @@ export const darkTheme = {
         backgroundColor: '#121214',
         textColor: '#fff',
         primary: '#323238',
-        primaryHover: '#202024',
+        primaryHover: '#7f7f7f',
         red: '#e32636',
         gray: '#383838',
         whiteNeve: '#fffafa',
