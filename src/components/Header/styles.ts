@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
     width:100%;
-    background-color:${props => props.theme['blue']};
-    box-shadow:0px 0px 14px 0px ${props => props.theme['black']};
+    background-color:${({ theme }) => theme.colors.primary};
+    box-shadow:0px 0px 14px 0px ${({ theme }) => theme.colors.blackColor};
 `
 export const HeaderContent = styled.div`
     max-width:1440px;
@@ -24,8 +24,8 @@ export const LogoContainer = styled.div`
             font-size:1.2rem;
             font-weight:800;
             font-style:italic;
-            color:${props => props.theme['white-neve']};
-            filter:drop-shadow(4px 4px 4px ${props => props.theme['black']})
+            color:${({ theme }) => theme.colors.whiteNeve};
+            filter:drop-shadow(4px 4px 4px ${({ theme }) => theme.colors.blackColor});
         }
 `
 
@@ -43,12 +43,12 @@ export const SearchContent = styled.div`
         input{
             flex-grow:1;
             padding:0.4rem;
-            border: 1px solid ${props => props.theme['gray-100']};
+            border: 1px solid ${({ theme }) => theme.colors.gray};
             border-radius: 10px 0 0 10px;
         }
         button{
-            border: 1px solid ${props => props.theme['gray-100']};
-            background-color:${props => props.theme['white']};
+            border: 1px solid ${({ theme }) => theme.colors.gray};
+            background-color:${({ theme }) => theme.colors.white};
             padding:0.28rem;
             cursor: pointer;
             border-radius: 0px 10px 10px 0px;
@@ -58,6 +58,7 @@ export const SearchContent = styled.div`
 export const CartContainer = styled.div`
     display:flex;
     align-items:center;
+    gap:30px;
         button{
             display:flex;
             align-items:center;
@@ -75,8 +76,8 @@ export const CartContainer = styled.div`
             text-align:center;
             font-size:12px;
 
-            background-color:${props => props.theme['red']};
+            background:${({ theme }) => theme.colors.red};
             border-radius: 15px;
-            color:${props => props.theme['white']}
+            color:${({ theme }) => theme.colors.textColor};
         }
 `

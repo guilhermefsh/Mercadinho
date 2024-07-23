@@ -21,7 +21,7 @@ export const SideBarCart = () => {
                     <TitleCart>
                         <i onClick={() => setSideBarVisible(false)}><GoArrowLeft size={40} /></i>
                         <span>Carrinho de compras </span>
-                        <FaCartShopping size={24} color="blue" />
+                        <i><FaCartShopping size={24} /></i>
                     </TitleCart>
                     {cartItem.map((cart) => <CartItem key={cart.id} {...cart} />)}
                 </ItemsContainer>

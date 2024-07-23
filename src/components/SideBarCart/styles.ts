@@ -6,11 +6,11 @@ export const Overlay = styled.div<{ visible: boolean }>`
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); // Preto com 50% de opacidade
+    background: rgba(0, 0, 0, 0.5); 
     opacity: ${({ visible }) => (visible ? 1 : 0)};
     pointer-events: ${({ visible }) => (visible ? 'auto' : 'none')};
     transition: opacity 0.5s ease-in-out;
-    z-index: 10; // Deve estar acima da sidebar
+    z-index: 10; 
 `;
 
 export const SideBarCartContainer = styled.aside<{ visible: boolean }>`
@@ -24,7 +24,7 @@ export const SideBarCartContainer = styled.aside<{ visible: boolean }>`
     position: fixed;
     top: 0;
     right: 0;
-    background-color: ${props => props.theme['white']};
+    background-color:${({ theme }) => theme.colors.backgroundColor};
     transform: ${({ visible }) => (visible ? "translateX(0)" : "translateX(100%)")};
     transition: transform 1s ease-in-out;
     z-index: 20;
@@ -35,17 +35,17 @@ export const TitleCart = styled.div`
     align-items:center;
     justify-content:center;
     margin:1rem 0;
-    border-bottom:1px solid ${props => props.theme['blue']};
+    border-bottom:1px solid ${({ theme }) => theme.colors.primary};
     gap:20px;
         span{
             font-size:1.25rem;
-            color:${props => props.theme['blue']};
+            color:${({ theme }) => theme.colors.textColor};
             text-align:center;
         }
 
         i{
             cursor: pointer;
-            color:${props => props.theme['blue']}
+            color:${({ theme }) => theme.colors.textColor};;
         }
 
 `
@@ -60,6 +60,7 @@ export const ItemsContainer = styled.div`
 export const CartResume = styled.div`
     display:flex;
     flex-direction:column;
+    color:${({ theme }) => theme.colors.textColor};
     gap:16px;
         span{
             font-weight:800;
@@ -68,8 +69,8 @@ export const CartResume = styled.div`
         button{
             padding:1rem;
             border-radius:14px;
-            background-color:${props => props.theme['blue']};
-            color:${props => props.theme['white']};
+            background-color:${({ theme }) => theme.colors.primary};
+            color:${({ theme }) => theme.colors.white};
             cursor: pointer;
 
             &:hover{

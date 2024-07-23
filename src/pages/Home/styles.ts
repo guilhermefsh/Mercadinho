@@ -7,6 +7,7 @@ export const HomeContent = styled.section`
         text-transform:uppercase;
         margin:1rem 0;
         font-size:2.5rem;
+        color:${({ theme }) => theme.colors.textColor};
     }
 
     @media(max-width:474px){

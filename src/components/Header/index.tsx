@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
 import { CartContainer, HeaderContainer, HeaderContent, LogoContainer, SearchContent } from "./styles"
+import React, { useContext } from "react";
 import { FaSearch } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import { ProductsContext } from "../../context/ProductsContext";
 import { useFetchProducts } from "../../hooks/useFetchProducts";
 import { SideBarCart } from "../SideBarCart";
+import { ThemeToggleButton } from "../ThemeToggleButton";
 
 
 export const Header = () => {
@@ -40,6 +41,7 @@ export const Header = () => {
                 </SearchContent>
 
                 <CartContainer>
+                    <ThemeToggleButton />
                     <button onClick={() => setSideBarVisible(!sideBarVisible)}>
                         <FaCartShopping size={30} color="white" />
                         {cartItem.length > 0 && <span>{cartItem.length}</span>}

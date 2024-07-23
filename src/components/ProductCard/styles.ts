@@ -6,8 +6,9 @@ export const InfoProducts = styled.div`
     height:200px;
     justify-content:space-around;
     padding:.5rem;
-    border-top:1px solid ${props => props.theme['gray-100']};
-
+    border-top:1px solid ${({ theme }) => theme.colors.gray};
+    background-color:${({ theme }) => theme.colors.cardColor};
+    color:${({ theme }) => theme.colors.textColor};
     span{
         font-weight:bold;
         text-align:center;
@@ -20,19 +21,19 @@ export const InfoProducts = styled.div`
     }
 
     button{
-        background-color:${props => props.theme['blue']};
-        color:${props => props.theme['white']};
+        background-color:${({ theme }) => theme.colors.primary};
+        color:${({ theme }) => theme.colors.white};
         padding: .5rem;
         border-radius:14px;
         cursor: pointer;
         margin: .4rem 0;
 
         &:hover{
-            background-color:${props => props.theme['blueHover']}
+            background-color:${({ theme }) => theme.colors.primaryHover};
         }
     }
 `
 
 export const OldPrice = styled.s`
-    color:${props => props.theme['gray-400']}
+    color:${({ theme }) => theme.colors.gray};
 `
