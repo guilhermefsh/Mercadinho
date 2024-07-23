@@ -35,5 +35,5 @@ export const InfoProducts = styled.div`
 `
 
 export const OldPrice = styled.s`
-    color:${({ theme }) => theme.colors.gray};
+    color:${({ theme }) => theme.colors.red};
 `

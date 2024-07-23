@@ -52,6 +52,10 @@ export const SearchContent = styled.div`
             padding:0.28rem;
             cursor: pointer;
             border-radius: 0px 10px 10px 0px;
+
+            i{
+                color:${({ theme }) => theme.colors.primary}
+            }
         }
     }
 `

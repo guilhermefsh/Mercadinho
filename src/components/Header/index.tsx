@@ -35,7 +35,7 @@ export const Header = () => {
                             onChange={(e) => setSearch(e.target.value)}
                         />
                         <button type="submit">
-                            <FaSearch color="blue" size={14} />
+                            <i><FaSearch size={14} /></i>
                         </button>
                     </form>
                 </SearchContent>
