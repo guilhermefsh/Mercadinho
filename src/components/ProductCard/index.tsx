@@ -10,6 +10,14 @@ export const ProductCard = () => {
     const { products, cartItem, setCartItems } = useContext(ProductsContext)
 
     const handleAddToCart = (product: ProductsProps) => {
+
+        const isProductInCart = cartItem.some(item => item.id === product.id);
+
+        if (isProductInCart) {
+            toast.error('Produto já está no carrinho');
+            return;
+        }
+
         try {
             setCartItems([...cartItem, product])
             toast.success('Produto adicionado ao carrinho')
