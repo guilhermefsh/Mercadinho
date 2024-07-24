@@ -40,7 +40,6 @@ export const ProductCard = () => {
                         <img
                             src={product.thumbnail.replace(/\w\.jpg/gi, 'W.jpg')}
                             alt={product.title}
-                            onClick={() => handleIsNavigatePageProduct(product.id)}
                         />
                     </figure>
                     <InfoProducts>
@@ -54,6 +53,7 @@ export const ProductCard = () => {
                         <span>{FormatCurrency(product.price, 'BRL')}</span>
 
                         <button onClick={() => handleAddToCart(product)}>Adicionar ao carrinho</button>
+                        <button onClick={() => handleIsNavigatePageProduct(product.id)}>ver mais</button>
                     </InfoProducts>
                 </div>
             )}

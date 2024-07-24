@@ -1,11 +1,25 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useParams } from 'react-router-dom'
 import { ProductAction } from '../../components/ProductAction'
 import { SellerInfo } from '../../components/SellerInfo'
 import { Info } from './components/Description'
 import { WarrantySection } from './components/Section'
 import { PageProductContainer, Row, Panel, Gallery, Column } from './styles'
-
+import { useContext, useEffect } from 'react'
+import { useFetchDetailsProducts } from '../../hooks/useFetchProducts'
+import { ProductsContext } from '../../context/ProductsContext'
 
 export const PageProduct = () => {
+    const { id } = useParams();
+    const { fetchDetailsProducts } = useFetchDetailsProducts()
+    const { viewProduct } = useContext(ProductsContext)
+
+    useEffect(() => {
+        if (id) {
+            fetchDetailsProducts(id);
+        }
+    }, [id])
+
     return (
         <>
             <PageProductContainer>
@@ -16,9 +30,11 @@ export const PageProduct = () => {
 
                 <Panel>
                     <Column>
-                        <Gallery>
-                            <img src="http://http2.mlstatic.com/D_704912-MLU72628163578_112023-W.jpg" alt="book3" />
-                        </Gallery>
+                        {viewProduct.map((product) => (
+                            <Gallery key={product.id}>
+                                <img src={product.thumbnail.replace(/\w\.jpg/gi, 'W.jpg')} alt="book3" />
+                            </Gallery>
+                        ))}
                         <Info />
                     </Column>
 

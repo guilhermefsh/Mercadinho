@@ -22,7 +22,6 @@ export const Row = styled.div`
             border-left:1px solid ${({ theme }) => theme.colors.gray};
         }
     }
-
     
 `
 
@@ -39,7 +38,6 @@ export const Column = styled.div`
         border-right:1px solid ${({ theme }) => theme.colors.gray}
     }
 `
-
 export const Gallery = styled.div`
     display:flex;
     justify-content:center;

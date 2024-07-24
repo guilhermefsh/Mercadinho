@@ -3,7 +3,8 @@ import styled from "styled-components"
 export const InfoProducts = styled.div`
     display:flex;
     flex-direction:column;
-    height:200px;
+    height:250px;
+    max-height:350px;
     justify-content:space-around;
     padding:.5rem;
     border-top:1px solid ${({ theme }) => theme.colors.gray};

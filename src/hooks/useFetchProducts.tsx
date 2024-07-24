@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { ProductsContext } from '../context/ProductsContext'
-import { api } from '../lib/axios'
+import { api, detailProductAPI } from '../lib/axios'
 
 export const useFetchProducts = () => {
     const { setLoading, setProducts } = useContext(ProductsContext)
@@ -20,4 +20,22 @@ export const useFetchProducts = () => {
         }
     }
     return { fetchProducts };
+}
+
+export const useFetchDetailsProducts = () => {
+
+    const { setViewProduct, setLoading } = useContext(ProductsContext)
+
+    const fetchDetailsProducts = async (id: string) => {
+        try {
+            setLoading(true)
+            const res = await detailProductAPI.get(`/${id}`)
+            setViewProduct([res.data])
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false)
+        }
+    }
+    return { fetchDetailsProducts };
 }

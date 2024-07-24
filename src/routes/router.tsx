@@ -16,7 +16,7 @@ export const Router = createBrowserRouter([
                 element: <Home />
             },
             {
-                path: "/product",
+                path: "/product/:id",
                 element: <PageProduct />
             }
         ]

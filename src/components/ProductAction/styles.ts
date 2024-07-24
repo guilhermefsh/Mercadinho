@@ -112,7 +112,7 @@ export const Benefits = styled.ul`
 `
 
 type ButtonProps = {
-    solid?: boolean;
+    $variant?: 'solid';
 }
 
 export const Button = styled.button<ButtonProps>`
@@ -126,9 +126,7 @@ export const Button = styled.button<ButtonProps>`
     margin-top:.7rem;
     cursor: pointer;
 
-    
-    
-    background-color: ${({ solid, theme }) => (solid ? theme.colors.primary : theme.colors.blue)};
+    background-color: ${({ $variant, theme }) => ($variant ? theme.colors.primary : theme.colors.blue)};
     color: ${({ theme }) => theme.colors.white};
 
     &:hover{
