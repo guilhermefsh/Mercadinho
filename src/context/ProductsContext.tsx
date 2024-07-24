@@ -12,6 +12,7 @@ export const ProductsProvider = ({ children }: ContextProvider) => {
     const [search, setSearch] = useState<string>('book3')
     const [cartItem, setCartItems] = useState<ProductsProps[]>([]);
     const [sideBarVisible, setSideBarVisible] = useState(false);
+    const [viewProduct, setViewProduct] = useState<ProductsProps[]>([])
 
     const updateCartItemQuantity = (id: string, newQuantity: number) => {
         const updatedCartItems = cartItem.map(item =>
@@ -32,7 +33,9 @@ export const ProductsProvider = ({ children }: ContextProvider) => {
             setCartItems,
             sideBarVisible,
             setSideBarVisible,
-            updateCartItemQuantity
+            updateCartItemQuantity,
+            viewProduct,
+            setViewProduct
         }}>
             {children}
         </ProductsContext.Provider>

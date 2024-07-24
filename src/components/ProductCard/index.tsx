@@ -4,10 +4,12 @@ import { OldPrice, InfoProducts } from "./styles";
 import { ProductsContext } from "../../context/ProductsContext";
 import { ProductsProps } from "../../interfaces/ProductsContext";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const ProductCard = () => {
 
     const { products, cartItem, setCartItems } = useContext(ProductsContext)
+    const navigate = useNavigate();
 
     const handleAddToCart = (product: ProductsProps) => {
 
@@ -26,6 +28,10 @@ export const ProductCard = () => {
         }
     }
 
+    const handleIsNavigatePageProduct = (id: string) => {
+        navigate(`/product/${id}`)
+    }
+
     return (
         <>
             {products.map(product =>
@@ -34,6 +40,7 @@ export const ProductCard = () => {
                         <img
                             src={product.thumbnail.replace(/\w\.jpg/gi, 'W.jpg')}
                             alt={product.title}
+                            onClick={() => handleIsNavigatePageProduct(product.id)}
                         />
                     </figure>
                     <InfoProducts>

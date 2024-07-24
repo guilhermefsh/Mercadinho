@@ -14,6 +14,14 @@ declare module "styled-components" {
             blackColor: string;
             cardColor: string;
             red: string;
+            reputation1: string;
+            reputation2: string;
+            reputation3: string;
+            reputation4: string;
+            reputation5: string;
+            green: string;
+            blue: string;
+            skyBlue: string;
         }
     }
 }

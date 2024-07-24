@@ -12,6 +12,8 @@ export interface ProductContextProps {
     sideBarVisible: boolean,
     setSideBarVisible: Dispatch<SetStateAction<boolean>>;
     updateCartItemQuantity: (id: string, newQuantity: number) => void;
+    viewProduct: viewProduct[];
+    setViewProduct: Dispatch<SetStateAction<ProductsProps[]>>
 }
 
 export interface ProductsProps {
@@ -21,6 +23,8 @@ export interface ProductsProps {
     original_price?: number;
     price: number;
     quantity?: number;
+    description: string;
+    pictures?: string;
 }
 
 export interface ContextProvider {
