@@ -15,8 +15,8 @@ export const SideBarCart = () => {
 
     return (
         <>
-            <Overlay visible={sideBarVisible} onClick={() => setSideBarVisible(false)} />
-            <SideBarCartContainer visible={sideBarVisible}>
+            <Overlay $visible={sideBarVisible} onClick={() => setSideBarVisible(false)} />
+            <SideBarCartContainer $visible={sideBarVisible}>
                 <ItemsContainer>
                     <TitleCart>
                         <i onClick={() => setSideBarVisible(false)}><GoArrowLeft size={40} /></i>

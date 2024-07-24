@@ -1,19 +1,23 @@
 import styled from "styled-components";
 
-export const Overlay = styled.div<{ visible: boolean }>`
+export const Overlay = styled.div< SideBarCartContainerProps>`
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5); 
-    opacity: ${({ visible }) => (visible ? 1 : 0)};
-    pointer-events: ${({ visible }) => (visible ? 'auto' : 'none')};
+    opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+    pointer-events: ${({ $visible }) => ($visible ? 'auto' : 'none')};
     transition: opacity 0.5s ease-in-out;
     z-index: 10; 
 `;
 
-export const SideBarCartContainer = styled.aside<{ visible: boolean }>`
+interface SideBarCartContainerProps {
+    $visible: boolean
+}
+
+export const SideBarCartContainer = styled.aside< SideBarCartContainerProps>`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -25,7 +29,7 @@ export const SideBarCartContainer = styled.aside<{ visible: boolean }>`
     top: 0;
     right: 0;
     background-color:${({ theme }) => theme.colors.backgroundColor};
-    transform: ${({ visible }) => (visible ? "translateX(0)" : "translateX(100%)")};
+    transform: ${({ $visible }) => ($visible ? "translateX(0)" : "translateX(100%)")};
     transition: transform 1s ease-in-out;
     z-index: 20;
 `;
