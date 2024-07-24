@@ -6,6 +6,7 @@ import { ProductsContext } from "../../context/ProductsContext";
 import { useFetchProducts } from "../../hooks/useFetchProducts";
 import { SideBarCart } from "../SideBarCart";
 import { ThemeToggleButton } from "../ThemeToggleButton";
+import { Link } from "react-router-dom";
 
 
 export const Header = () => {
@@ -23,8 +24,10 @@ export const Header = () => {
         <HeaderContainer>
             <HeaderContent>
                 <LogoContainer>
-                    <span>Mercadinho <br /></span>
-                    <span>do Gui</span>
+                    <Link to='/'>
+                        <span>Mercadinho <br /></span>
+                        <span>do Gui</span>
+                    </Link>
                 </LogoContainer>
                 <SearchContent>
                     <form onSubmit={HandleSearch}>
