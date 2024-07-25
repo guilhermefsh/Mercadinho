@@ -39,7 +39,7 @@ export const TitleCart = styled.div`
     align-items:center;
     justify-content:center;
     margin:1rem 0;
-    border-bottom:1px solid ${({ theme }) => theme.colors.primary};
+    border-bottom:1px solid ${({ theme }) => theme.colors.textColor};
     gap:20px;
         span{
             font-size:1.25rem;

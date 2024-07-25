@@ -23,5 +23,12 @@ export const useCart = () => {
         }
     }
 
-    return { addToCart }
+    const updateCartItemQuantity = (id: string, newQuantity: number) => {
+        const updatedCartItems = cartItem.map(item =>
+            item.id === id ? { ...item, quantity: newQuantity } : item
+        );
+        setCartItems(updatedCartItems);
+    };
+
+    return { addToCart, updateCartItemQuantity }
 }

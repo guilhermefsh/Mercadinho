@@ -5,11 +5,13 @@ import { FormatCurrency } from "../../utils/formatCurrency"
 import { useContext, useState } from "react"
 import { ProductsContext } from "../../context/ProductsContext"
 import { ArrowLeft, ArrowRight } from "phosphor-react"
+import { useCart } from "../../hooks/useCart"
 
 
 export const CartItem = (cart: ProductsProps) => {
 
-    const { cartItem, setCartItems, updateCartItemQuantity } = useContext(ProductsContext)
+    const { cartItem, setCartItems } = useContext(ProductsContext)
+    const { updateCartItemQuantity } = useCart()
     const [quantity, setQuantity] = useState(cart.quantity || 1);
 
     const handleDeleteCartItem = () => {

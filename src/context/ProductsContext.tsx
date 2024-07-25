@@ -7,19 +7,14 @@ export const ProductsContext = createContext({} as ProductContextProps);
 
 export const ProductsProvider = ({ children }: ContextProvider) => {
 
+    const [cartItem, setCartItems] = useState<ProductsProps[]>([]);
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState<ProductsProps[]>([]);
     const [search, setSearch] = useState<string>('book3')
-    const [cartItem, setCartItems] = useState<ProductsProps[]>([]);
     const [sideBarVisible, setSideBarVisible] = useState(false);
     const [viewProduct, setViewProduct] = useState<ProductsProps[]>([])
 
-    const updateCartItemQuantity = (id: string, newQuantity: number) => {
-        const updatedCartItems = cartItem.map(item =>
-            item.id === id ? { ...item, quantity: newQuantity } : item
-        );
-        setCartItems(updatedCartItems);
-    };
+
 
     return (
         <ProductsContext.Provider value={{
@@ -33,7 +28,6 @@ export const ProductsProvider = ({ children }: ContextProvider) => {
             setCartItems,
             sideBarVisible,
             setSideBarVisible,
-            updateCartItemQuantity,
             viewProduct,
             setViewProduct
         }}>
