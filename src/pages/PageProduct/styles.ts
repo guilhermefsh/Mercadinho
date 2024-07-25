@@ -1,28 +1,37 @@
 import styled from "styled-components";
+import { GoArrowLeft } from "react-icons/go";
 
 export const PageProductContainer = styled.div`
     display:flex;
     flex-direction:column;
 `
 
+export const ArrowLeft = styled(GoArrowLeft)`
+    width:2rem;
+    height:2rem;
+    cursor: pointer;
+    color:${({ theme }) => theme.colors.primaryHover};
+`
+
 export const Row = styled.div`
     display:flex;
-    justify-content:flex-end;
+    justify-content:space-between;
     align-items:center;
     padding: 1rem 0;
 
-    > a{
-        font-size:0.8rem;
-        text-decoration:none;
-        color: ${({ theme }) => theme.colors.primary};
-        padding: 2.5px;
-
-        & + a {
-            padding-left: 10px;
-            border-left:1px solid ${({ theme }) => theme.colors.gray};
+    div{
+        a{
+            font-size:0.8rem;
+            text-decoration:none;
+            color: ${({ theme }) => theme.colors.primary};
+            padding: 2.5px;
+    
+            & + a {
+                padding-left: 10px;
+                border-left:1px solid ${({ theme }) => theme.colors.gray};
+            }
         }
     }
-    
 `
 
 export const Panel = styled.div`

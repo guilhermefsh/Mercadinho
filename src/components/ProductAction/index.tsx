@@ -1,4 +1,7 @@
 import { useContext } from 'react'
+import { ProductsContext } from '../../context/ProductsContext'
+import { FormatCurrency } from '../../utils/formatCurrency'
+
 import {
     Container,
     Condition,
@@ -16,13 +19,12 @@ import {
     ShieldIcon,
     PriceRow
 } from './styles'
-import { ProductsContext } from '../../context/ProductsContext'
-import { FormatCurrency } from '../../utils/formatCurrency'
 
 export const ProductAction = () => {
 
     const { viewProduct } = useContext(ProductsContext)
     return (
+
         <>
             {viewProduct.map((product) => (
                 <Container key={product.id}>
