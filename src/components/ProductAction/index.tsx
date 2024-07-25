@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { ProductsContext } from '../../context/ProductsContext'
 import { FormatCurrency } from '../../utils/formatCurrency'
-
+import { useCart } from '../../hooks/useCart'
 import {
     Container,
     Condition,
@@ -23,6 +23,7 @@ import {
 export const ProductAction = () => {
 
     const { viewProduct } = useContext(ProductsContext)
+    const { addToCart } = useCart();
     return (
 
         <>
@@ -64,7 +65,7 @@ export const ProductAction = () => {
 
                     <Actions>
                         <Button $variant='solid'>Comprar agora</Button>
-                        <Button >Adicionar ao carrinho</Button>
+                        <Button onClick={() => addToCart(product)}>Adicionar ao carrinho</Button>
                     </Actions>
 
                     <Benefits>

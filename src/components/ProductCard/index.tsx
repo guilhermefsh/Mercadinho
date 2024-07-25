@@ -2,31 +2,14 @@ import { useContext } from "react";
 import { FormatCurrency } from "../../utils/formatCurrency";
 import { OldPrice, InfoProducts } from "./styles";
 import { ProductsContext } from "../../context/ProductsContext";
-import { ProductsProps } from "../../interfaces/ProductsContext";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../hooks/useCart";
 
 export const ProductCard = () => {
 
-    const { products, cartItem, setCartItems } = useContext(ProductsContext)
+    const { products } = useContext(ProductsContext)
+    const { addToCart } = useCart();
     const navigate = useNavigate();
-
-    const handleAddToCart = (product: ProductsProps) => {
-
-        const isProductInCart = cartItem.some(item => item.id === product.id);
-
-        if (isProductInCart) {
-            toast.error('Produto já está no carrinho');
-            return;
-        }
-
-        try {
-            setCartItems([...cartItem, product])
-            toast.success('Produto adicionado ao carrinho')
-        } catch (error) {
-            toast.error('ocorreu um erro ao adicionar o produto no carrinho')
-        }
-    }
 
     const handleIsNavigatePageProduct = (id: string) => {
         navigate(`/product/${id}`)
@@ -52,7 +35,7 @@ export const ProductCard = () => {
                         }
                         <span>{FormatCurrency(product.price, 'BRL')}</span>
 
-                        <button onClick={() => handleAddToCart(product)}>Adicionar ao carrinho</button>
+                        <button onClick={() => addToCart(product)}>Adicionar ao carrinho</button>
                         <button onClick={() => handleIsNavigatePageProduct(product.id)}>ver mais</button>
                     </InfoProducts>
                 </div>

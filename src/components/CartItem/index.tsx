@@ -16,6 +16,7 @@ export const CartItem = (cart: ProductsProps) => {
         const updateItems = cartItem.filter((item) => item.id != cart.id);
         setCartItems(updateItems)
     }
+
     const handleDecreaseQuantity = () => {
         if (quantity > 1) {
             const newQuantity = quantity - 1;
