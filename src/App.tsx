@@ -3,15 +3,18 @@ import { Router } from "./routes/router";
 import { GlobalStyle } from "./styles/globalstyle";
 import { ProductsProvider } from "./context/ProductsContext";
 import { ThemeProvider } from "./context/ThemeContext";
+import { AuthProvider } from "./context/AuthContext";
 
 
 function App() {
   return (
     <ThemeProvider>
       <GlobalStyle />
-      <ProductsProvider>
-        <RouterProvider router={Router} />
-      </ProductsProvider>
+      <AuthProvider>
+        <ProductsProvider>
+          <RouterProvider router={Router} />
+        </ProductsProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

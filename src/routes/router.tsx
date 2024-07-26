@@ -5,6 +5,7 @@ import { Error404 } from "../pages/404";
 import { PageProduct } from "../pages/PageProduct";
 import { Login } from "../pages/Login";
 import { Register } from "../pages/register";
+import { Private } from "./Private";
 
 
 
@@ -19,7 +20,7 @@ export const Router = createBrowserRouter([
             },
             {
                 path: "/product/:id",
-                element: <PageProduct />
+                element: <Private><PageProduct /></Private>
             }
         ]
     },

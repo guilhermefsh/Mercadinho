@@ -16,10 +16,6 @@ export const RegisterContainer = styled.main`
         font-size:1.5rem;
         filter:drop-shadow(4px 4px 4px ${({ theme }) => theme.colors.blackColor});
     }
-    span{
-        font-size:1.2rem;
-        color:${({ theme }) => theme.colors.whiteNeve};
-    }
 `
 
 export const Formulario = styled.form`
@@ -75,4 +71,13 @@ export const Formulario = styled.form`
     a{
         color:${({ theme }) => theme.colors.primaryHover};
     }
+`
+
+export const TextError = styled.span`
+    color:${({ theme }) => theme.colors.red};
+    font-size:1rem;
+`
+export const Title = styled.span`
+    color:${({ theme }) => theme.colors.whiteNeve};
+    font-size:1.2rem;
 `

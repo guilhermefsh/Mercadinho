@@ -63,6 +63,7 @@ export const SearchContent = styled.div`
 export const CartContainer = styled.div`
     display:flex;
     align-items:center;
+    position:relative;
     gap:30px;
         button{
             display:flex;
@@ -91,4 +92,36 @@ export const AuthIcon = styled(IoIosContact)`
     color:${({ theme }) => theme.colors.white};
     width:35px;
     height:35px;
+    cursor: pointer;
 `
+export const MenuList = styled.ul`
+  position: absolute;
+  top: 38px;
+  right: 26px;
+  background: ${({ theme }) => theme.colors.primary};
+  border: 1px solid ${({ theme }) => theme.colors.whiteNeve};
+  padding: 10px;
+  margin: 0;
+  
+  li {
+    text-align:center;
+    color:${({ theme }) => theme.colors.whiteNeve};
+    cursor: pointer;
+    a{
+      text-decoration: none;
+      color: black;
+      display: block;
+      padding: 5px 10px;
+      color:${({ theme }) => theme.colors.whiteNeve};
+
+      
+      &:hover {
+        background: ${({ theme }) => theme.colors.primaryHover};
+      }
+    }
+
+    &:hover {
+        background: ${({ theme }) => theme.colors.primaryHover};
+      }
+  }
+`;

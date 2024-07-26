@@ -16,11 +16,6 @@ export const LoginContainer = styled.main`
         font-size:1.5rem;
         filter:drop-shadow(4px 4px 4px ${({ theme }) => theme.colors.blackColor});
     }
-
-    span{
-        font-size:1.2rem;
-        color:${({ theme }) => theme.colors.whiteNeve};
-    }
 `
 
 export const Formulario = styled.form`
@@ -37,7 +32,7 @@ export const Formulario = styled.form`
     >fieldset{
         display:flex;
         flex-direction:column;
-        color:${({ theme }) => theme.colors.gray};
+        color:${({ theme }) => theme.colors.lightGray};
         font-size:1.2rem;
         gap:8px;
 
@@ -76,4 +71,14 @@ export const Formulario = styled.form`
     a{
         color:${({ theme }) => theme.colors.primaryHover};
     }
+`
+
+export const Title = styled.span`
+    color:${({ theme }) => theme.colors.whiteNeve};
+    font-size:1.2rem;
+`
+
+export const TextError = styled.span`
+    color:${({ theme }) => theme.colors.red};
+    font-size:1rem;
 `
