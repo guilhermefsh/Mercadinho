@@ -6,6 +6,7 @@ export const Login = () => {
         <LoginContainer>
             <Formulario>
                 <h3>Mercadinho <br />do Gui!</h3>
+                <span>Entre na sua conta!</span>
                 <fieldset>
                     <label htmlFor="email">Email</label>
                     <input
