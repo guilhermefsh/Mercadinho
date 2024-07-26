@@ -1,13 +1,13 @@
 import { useContext } from 'react'
 import { ProductsContext } from '../context/ProductsContext'
-import { api, detailProductAPI } from '../lib/axios'
+import { api } from '../lib/axios'
 
 export const useFetchProducts = () => {
     const { setLoading, setProducts } = useContext(ProductsContext)
     const fetchProducts = async (query: string) => {
         try {
             setLoading(true)
-            const response = await api.get('', {
+            const response = await api.get('sites/MLB/search', {
                 params: {
                     q: query
                 }
@@ -29,7 +29,7 @@ export const useFetchDetailsProducts = () => {
     const fetchDetailsProducts = async (id: string) => {
         try {
             setLoading(true)
-            const res = await detailProductAPI.get(`/${id}`)
+            const res = await api.get(`items/${id}`)
             setViewProduct([res.data])
         } catch (error) {
             console.log(error);

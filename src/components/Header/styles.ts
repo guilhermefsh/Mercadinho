@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IoIosContact } from "react-icons/io";
 
 export const HeaderContainer = styled.header`
     width:100%;
@@ -84,4 +85,10 @@ export const CartContainer = styled.div`
             border-radius: 15px;
             color:${({ theme }) => theme.colors.textColor};
         }
+`
+
+export const AuthIcon = styled(IoIosContact)`
+    color:${({ theme }) => theme.colors.white};
+    width:35px;
+    height:35px;
 `
