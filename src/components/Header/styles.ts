@@ -5,6 +5,8 @@ export const HeaderContainer = styled.header`
     width:100%;
     background-color:${({ theme }) => theme.colors.primary};
     box-shadow:0px 0px 14px 0px ${({ theme }) => theme.colors.blackColor};
+    position:fixed;
+    top:0;
 `
 export const HeaderContent = styled.div`
     max-width:1440px;

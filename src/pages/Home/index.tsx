@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect } from "react"
-import { HomeContent, ProductsContainer } from "./styles"
+import { HomeContent, MainContainer, ProductsContainer } from "./styles"
 import { ProductsContext } from "../../context/ProductsContext"
 import { Loader } from "../../components/Loader";
 import { useFetchProducts } from "../../hooks/useFetchProducts";
@@ -16,7 +16,7 @@ export const Home = () => {
     }, [])
 
     return (
-        <main>
+        <MainContainer>
             <HomeContent>
 
                 <h1>Seu produto está aqui!</h1>
@@ -29,6 +29,6 @@ export const Home = () => {
                     </ProductsContainer>)}
 
             </HomeContent>
-        </main>
+        </MainContainer>
     )
 }

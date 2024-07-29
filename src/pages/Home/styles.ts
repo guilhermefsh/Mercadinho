@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const MainContainer = styled.main`
+    margin-top:6rem;
+`
+
 export const HomeContent = styled.section`
     margin:1rem 1rem;
     h1{
