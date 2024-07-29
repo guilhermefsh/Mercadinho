@@ -4,13 +4,12 @@ import { useForm } from "react-hook-form"
 import * as z from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { LoaderForm } from "../../components/LoaderForm"
-import { authAPI } from "../../lib/axios"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { AuthContext } from "../../context/AuthContext"
 import { toast } from "react-toastify"
 
 const schema = z.object({
-    email: z.string().email("Insira um email válido").nonempty("O cmapo email é obrigatório"),
+    email: z.string().email("Insira um email válido").nonempty("O campo email é obrigatório"),
     password: z.string().nonempty("A senha é obrigatória")
 })
 
@@ -18,7 +17,7 @@ type FormData = z.infer<typeof schema>
 
 export const Login = () => {
 
-    const { SignIn } = useContext(AuthContext);
+    const { SignIn, signed } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
@@ -28,14 +27,17 @@ export const Login = () => {
 
     const handleSubmitSign = async (data: FormData) => {
         try {
-            const SignUser = await authAPI.post('/auth', data)
-            console.log(SignUser)
             await SignIn(data)
-            navigate('/')
         } catch (error) {
             toast.error('Ocorreu um erro, tente novamente!');
         }
     }
+
+    useEffect(() => {
+        if (signed) {
+            navigate('/')
+        }
+    }, [signed, navigate])
 
     return (
         <LoginContainer>

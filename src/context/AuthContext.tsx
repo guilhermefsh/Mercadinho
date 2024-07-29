@@ -17,14 +17,19 @@ export const AuthProvider = ({ children }: ContextProvider) => {
                 password
             })
 
-            const { token, user } = response.data;
-            setUser(user);
-            authAPI.defaults.headers.common[
-                "Authorization"
-            ] = `Bearer ${response.data.token}`
+            if (response.data.error) {
+                toast.error('usuário não existe, faça login para continuar!')
+                return;
+            } else {
+                const { token, user } = response.data;
+                setUser(user);
+                authAPI.defaults.headers.common[
+                    "Authorization"
+                ] = `Bearer ${response.data.token}`
 
-            localStorage.setItem("@AuthToken", token);
-            localStorage.setItem("@AuthUser", JSON.stringify(user));
+                localStorage.setItem("@AuthToken", token);
+                localStorage.setItem("@AuthUser", JSON.stringify(user));
+            }
 
         } catch (error) {
             toast.error('Erro ao fazer login')

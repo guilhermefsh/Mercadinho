@@ -6,11 +6,13 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { LoaderForm } from "../../components/LoaderForm"
 import { authAPI } from "../../lib/axios"
 import { toast } from "react-toastify"
+import { useContext, useEffect } from "react"
+import { AuthContext } from "../../context/AuthContext"
 
 const schema = z.object({
     name: z.string().nonempty("O campo nome é obrigatório"),
     email: z.string().email("Insira um email válido").nonempty("O cmapo email é obrigatório"),
-    password: z.string().nonempty("A senha é obrigatória")
+    password: z.string().nonempty("A senha é obrigatória").min(8, ('A senha deve conter no mínimo 8 dígitos'))
 })
 
 type FormData = z.infer<typeof schema>
@@ -18,6 +20,7 @@ type FormData = z.infer<typeof schema>
 export const Register = () => {
 
     const navigate = useNavigate();
+    const { SignIn } = useContext(AuthContext);
 
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
         resolver: zodResolver(schema),
@@ -26,13 +29,21 @@ export const Register = () => {
 
     const handleSubmitRegister = async (data: FormData) => {
         try {
-            const createUser = await authAPI.post('/create', data)
-            console.log(createUser.data)
-            navigate('/login');
+            const response = await authAPI.post('/create', data);
+
+            if (response.data.error) {
+                toast.error(response.data.error);
+                return;
+            }
+            toast.success('Registrado com sucesso! Redirecionando para a página inicial');
+            await SignIn(data);
+            navigate('/');
         } catch (error) {
-            toast.error('Ocorreu um erro ao se registrar, tente novamente!')
+            toast.error('Ocorreu um erro ao se registrar, tente novamente!');
         }
     }
+
+    useEffect(() => { }, [])
 
     return (
         <RegisterContainer>
