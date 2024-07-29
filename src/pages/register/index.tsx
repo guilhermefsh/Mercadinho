@@ -10,10 +10,10 @@ import { useContext, useEffect } from "react"
 import { AuthContext } from "../../context/AuthContext"
 
 const schema = z.object({
-    name: z.string().nonempty("O campo nome é obrigatório"),
-    email: z.string().email("Insira um email válido").nonempty("O cmapo email é obrigatório"),
-    password: z.string().nonempty("A senha é obrigatória").min(8, ('A senha deve conter no mínimo 8 dígitos'))
-})
+    name: z.string().min(1, "O campo nome é obrigatório"),
+    email: z.string().email("Insira um email válido").min(1, "O campo email é obrigatório"),
+    password: z.string().min(1, "A senha é obrigatória").min(8, "A senha deve conter no mínimo 8 dígitos")
+});
 
 type FormData = z.infer<typeof schema>
 
