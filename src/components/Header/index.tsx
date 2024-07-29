@@ -6,22 +6,22 @@ import { ProductsContext } from "../../context/ProductsContext";
 import { SideBarCart } from "../SideBarCart";
 import { ThemeToggleButton } from "../ThemeToggleButton";
 import { Link, useNavigate } from "react-router-dom";
-import { useFetchProducts } from "../../hooks/useFetchProducts";
 import { AuthContext } from "../../context/AuthContext";
 
 
 export const Header = () => {
 
+    const [searchProduct, setSearchProduct] = useState('');
     const [menuVisible, setMenuVisible] = useState(false);
-    const { setSearch, search, cartItem, setSideBarVisible, sideBarVisible } = useContext(ProductsContext);
+
+    const { setSearch, cartItem, setSideBarVisible, sideBarVisible } = useContext(ProductsContext);
     const { SignOut } = useContext(AuthContext);
-    const { fetchProducts } = useFetchProducts();
+
     const navigate = useNavigate();
 
     const HandleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        fetchProducts(search);
-        setSearch('')
+        setSearch(searchProduct)
     }
 
     const handleAuthIconClick = () => {
@@ -47,8 +47,8 @@ export const Header = () => {
                         <input
                             type="text"
                             placeholder="Batedeira"
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
+                            value={searchProduct}
+                            onChange={(e) => setSearchProduct(e.target.value)}
                         />
                         <button type="submit">
                             <i><FaSearch size={14} /></i>

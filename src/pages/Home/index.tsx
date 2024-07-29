@@ -1,19 +1,15 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useContext, useEffect } from "react"
 import { HomeContent, MainContainer, ProductsContainer } from "./styles"
-import { ProductsContext } from "../../context/ProductsContext"
 import { Loader } from "../../components/Loader";
-import { useFetchProducts } from "../../hooks/useFetchProducts";
 import { ProductCard } from "../../components/ProductCard";
+import { useFetchProducts } from "../../hooks/useFetchProducts";
+import { ProductsProps } from "../../interfaces/ProductsContext";
+import { useContext } from "react";
+import { ProductsContext } from "../../context/ProductsContext";
 
 export const Home = () => {
 
-    const { loading, search } = useContext(ProductsContext);
-    const { fetchProducts } = useFetchProducts();
-
-    useEffect(() => {
-        fetchProducts(search);
-    }, [])
+    const { search } = useContext(ProductsContext);
+    const { data: products, isLoading } = useFetchProducts(search);
 
     return (
         <MainContainer>
@@ -21,11 +17,13 @@ export const Home = () => {
 
                 <h1>Seu produto está aqui!</h1>
 
-                {loading ? (
+                {isLoading ? (
                     <Loader />
                 ) : (
                     <ProductsContainer>
-                        <ProductCard />
+                        {products?.results.map((product: ProductsProps) => (
+                            <ProductCard key={product.id} product={product} />
+                        ))}
                     </ProductsContainer>)}
 
             </HomeContent>

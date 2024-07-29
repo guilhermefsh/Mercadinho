@@ -1,18 +1,12 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
 
 export interface ProductContextProps {
-    products: products[];
-    setProducts: Dispatch<SetStateAction<ProductsProps[]>>;
-    loading: boolean;
-    setLoading: Dispatch<SetStateAction<boolean>>;
     search: string;
     setSearch: Dispatch<SetStateAction<string>>;
     cartItem: ProductsProps[]
     setCartItems: Dispatch<SetStateAction<ProductsProps[]>>;
     sideBarVisible: boolean,
     setSideBarVisible: Dispatch<SetStateAction<boolean>>;
-    viewProduct: viewProduct[];
-    setViewProduct: Dispatch<SetStateAction<ProductsProps[]>>
 }
 
 export interface ProductsProps {
@@ -24,6 +18,14 @@ export interface ProductsProps {
     quantity?: number;
     description: string;
     pictures?: string;
+}
+export interface ViewProductProps {
+    viewProduct: ProductsProps;
+}
+
+export interface ProductsDataResponse {
+    results: ProductsProps[];
+
 }
 
 export interface ContextProvider {

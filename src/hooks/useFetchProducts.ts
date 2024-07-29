@@ -1,41 +1,23 @@
-import { useContext } from 'react'
-import { ProductsContext } from '../context/ProductsContext'
 import { api } from '../lib/axios'
+import { useQuery } from '@tanstack/react-query'
+import { AxiosPromise } from 'axios'
+import { ProductsDataResponse } from '../interfaces/ProductsContext'
 
-export const useFetchProducts = () => {
-    const { setLoading, setProducts } = useContext(ProductsContext)
-    const fetchProducts = async (query: string) => {
-        try {
-            setLoading(true)
-            const response = await api.get('sites/MLB/search', {
-                params: {
-                    q: query
-                }
-            })
-            setProducts(response.data.results);
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setLoading(false)
-        }
-    }
-    return { fetchProducts };
+export const fetchProducts = async (query: string): AxiosPromise<ProductsDataResponse> => {
+    const response = await api.get<ProductsDataResponse>('sites/MLB/search', {
+        params: {
+            q: query,
+        },
+    });
+    return response;
 }
 
-export const useFetchDetailsProducts = () => {
+export const useFetchProducts = (query: string) => {
+    const queryResult = useQuery({
+        queryKey: ['products-data', query],
+        queryFn: () => fetchProducts(query),
+    });
 
-    const { setViewProduct, setLoading } = useContext(ProductsContext)
-
-    const fetchDetailsProducts = async (id: string) => {
-        try {
-            setLoading(true)
-            const res = await api.get(`items/${id}`)
-            setViewProduct([res.data])
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setLoading(false)
-        }
-    }
-    return { fetchDetailsProducts };
+    return { ...queryResult, data: queryResult.data?.data ?? { results: [] } };
 }
+
