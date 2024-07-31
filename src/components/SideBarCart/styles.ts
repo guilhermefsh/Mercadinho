@@ -70,7 +70,7 @@ export const CartResume = styled.div`
             font-weight:800;
             font-size:1.5rem;
         }
-        button{
+        a{
             padding:1rem;
             border-radius:14px;
             background-color:${({ theme }) => theme.colors.primary};

@@ -7,6 +7,8 @@ export interface ProductContextProps {
     setCartItems: Dispatch<SetStateAction<ProductsProps[]>>;
     sideBarVisible: boolean,
     setSideBarVisible: Dispatch<SetStateAction<boolean>>;
+    quantity: number;
+    setQuantity: Dispatch<SetStateAction<number>>;
 }
 
 export interface ProductsProps {

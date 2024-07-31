@@ -5,13 +5,15 @@ import { ProductsContext } from "../../context/ProductsContext"
 import { FaCartShopping } from "react-icons/fa6";
 import { FormatCurrency } from "../../utils/formatCurrency";
 import { GoArrowLeft } from "react-icons/go";
+import { Link } from "react-router-dom";
+import { useCart } from "../../hooks/useCart";
 
 export const SideBarCart = () => {
 
     const { cartItem, setSideBarVisible, sideBarVisible } = useContext(ProductsContext);
+    const { totalQuantity, totalPrice } = useCart();
 
-    const totalQuantity = cartItem.reduce((acc, product) => acc + (product.quantity || 1), 0);
-    const totalPrice = cartItem.reduce((acc, product) => acc + (product.price * (product.quantity || 1)), 0);
+
 
     return (
         <>
@@ -30,7 +32,7 @@ export const SideBarCart = () => {
                     <hr />
                     <p>Total de Itens: {totalQuantity}</p>
                     <span>Total: {FormatCurrency(totalPrice, 'BRL')}</span>
-                    <button>Continuar Comprando</button>
+                    <Link to='/purchase'>Continuar Comprando</Link>
                 </CartResume>
             </SideBarCartContainer>
         </>

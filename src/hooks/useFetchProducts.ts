@@ -18,6 +18,9 @@ export const useFetchProducts = (query: string) => {
         queryFn: () => fetchProducts(query),
     });
 
-    return { ...queryResult, data: queryResult.data?.data ?? { results: [] } };
+    return {
+        ...queryResult,
+        data: queryResult.data?.data ?? { results: [] }
+    };
 }
 

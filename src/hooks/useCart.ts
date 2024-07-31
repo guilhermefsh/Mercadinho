@@ -5,9 +5,30 @@ import { ProductsProps } from "../interfaces/ProductsContext";
 
 export const useCart = () => {
     const { cartItem, setCartItems } = useContext(ProductsContext)
+    const totalQuantity = cartItem.reduce((acc, product) => acc + (product.quantity || 1), 0);
+    const totalPrice = cartItem.reduce((acc, product) => acc + (product.price * (product.quantity || 1)), 0);
+
+    const handleDeleteCartItem = (id: string) => {
+        const updateItems = cartItem.filter((item) => item.id != id);
+        setCartItems(updateItems)
+    }
+
+    const handleDecreaseQuantity = (id: string) => {
+        const updatedCartItems = cartItem.map(item =>
+            item.id === id && item.quantity! > 1 ? { ...item, quantity: item.quantity! - 1 } : item
+        );
+        setCartItems(updatedCartItems);
+    };
+
+    const handleIncreaseQuantity = (id: string) => {
+        const updatedCartItems = cartItem.map(item =>
+            item.id === id ? { ...item, quantity: (item.quantity || 1) + 1 } : item
+        );
+        setCartItems(updatedCartItems);
+    };
+
 
     const addToCart = (product: ProductsProps) => {
-
         const isProductInCart = cartItem.some(item => item.id === product.id);
 
         if (isProductInCart) {
@@ -15,13 +36,9 @@ export const useCart = () => {
             return;
         }
 
-        try {
-            setCartItems([...cartItem, product])
-            toast.success('Produto adicionado ao carrinho')
-        } catch (error) {
-            toast.error('ocorreu um erro ao adicionar o produto no carrinho')
-        }
-    }
+        setCartItems([...cartItem, { ...product, quantity: 1 }]);
+        toast.success('Produto adicionado ao carrinho');
+    };
 
     const updateCartItemQuantity = (id: string, newQuantity: number) => {
         const updatedCartItems = cartItem.map(item =>
@@ -30,5 +47,13 @@ export const useCart = () => {
         setCartItems(updatedCartItems);
     };
 
-    return { addToCart, updateCartItemQuantity }
+    return {
+        addToCart,
+        updateCartItemQuantity,
+        totalQuantity,
+        totalPrice,
+        handleDeleteCartItem,
+        handleDecreaseQuantity,
+        handleIncreaseQuantity
+    }
 }

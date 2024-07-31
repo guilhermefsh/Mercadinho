@@ -11,29 +11,26 @@ export const AuthProvider = ({ children }: ContextProvider) => {
     const [user, setUser] = useState<UserProps | null>(null);
 
     const SignIn = async ({ email, password }: UserProps) => {
-        try {
-            const response = await authAPI.post('/auth', {
-                email,
-                password
-            })
 
-            if (response.data.error) {
-                toast.error('usuário não existe, faça login para continuar!')
-                return;
-            } else {
-                const { token, user } = response.data;
-                setUser(user);
-                authAPI.defaults.headers.common[
-                    "Authorization"
-                ] = `Bearer ${response.data.token}`
+        const response = await authAPI.post('/auth', {
+            email,
+            password
+        })
 
-                localStorage.setItem("@AuthToken", token);
-                localStorage.setItem("@AuthUser", JSON.stringify(user));
-            }
+        if (response.data.error) {
+            toast.error('usuário não existe, faça login para continuar!')
+            return;
+        } else {
+            const { token, user } = response.data;
+            setUser(user);
+            authAPI.defaults.headers.common[
+                "Authorization"
+            ] = `Bearer ${response.data.token}`
 
-        } catch (error) {
-            toast.error('Erro ao fazer login')
+            localStorage.setItem("@AuthToken", token);
+            localStorage.setItem("@AuthUser", JSON.stringify(user));
         }
+
     }
 
     const SignOut = () => {

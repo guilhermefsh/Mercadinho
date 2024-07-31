@@ -20,7 +20,7 @@ export const lightTheme = {
         reputation4: '#F3FEE0',
         reputation5: '#00A650',
         blue: '#87CEEB',
-        skyblue: '#4169E1'
+        skyBlue: '#4169E1'
     }
 };
 
@@ -46,6 +46,6 @@ export const darkTheme = {
         reputation5: '#00A650',
         green: '#008000',
         blue: '#1C1C1C',
-        skyblue: '#4169E1'
+        skyBlue: '#4169E1'
     }
 };

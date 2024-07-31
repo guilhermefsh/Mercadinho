@@ -15,7 +15,7 @@ export const Header = () => {
     const [menuVisible, setMenuVisible] = useState(false);
 
     const { setSearch, cartItem, setSideBarVisible, sideBarVisible } = useContext(ProductsContext);
-    const { SignOut } = useContext(AuthContext);
+    const { SignOut, signed } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -63,7 +63,7 @@ export const Header = () => {
                         <MenuList>
                             <li><Link to="/profile">Profile</Link></li>
                             <li><Link to="/settings">Settings</Link></li>
-                            <li onClick={handleSignOut}>Logout</li>
+                            {signed ? <li onClick={handleSignOut}>Logout</li> : <li><Link to="/login">Login</Link></li>}
                         </MenuList>
                     )}
                     <button onClick={() => setSideBarVisible(!sideBarVisible)}>
