@@ -1,8 +1,8 @@
 import { createContext, useState } from "react";
-import { ContextProvider, } from "../interfaces/ProductsContext";
-import { AuthContextProps, UserProps } from "../interfaces/AuthCT";
+import { AuthContextProps, SignInCredentials, UserProps } from "../interfaces/AuthCT";
 import { authAPI } from "../lib/axios";
 import { toast } from "react-toastify";
+import { ContextProvider } from "../interfaces/ContextProvider";
 
 export const AuthContext = createContext({} as AuthContextProps);
 
@@ -10,7 +10,7 @@ export const AuthContext = createContext({} as AuthContextProps);
 export const AuthProvider = ({ children }: ContextProvider) => {
     const [user, setUser] = useState<UserProps | null>(null);
 
-    const SignIn = async ({ email, password }: UserProps) => {
+    const SignIn = async ({ email, password }: SignInCredentials) => {
 
         try {
             const response = await authAPI.post('/auth', {

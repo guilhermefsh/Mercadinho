@@ -28,7 +28,7 @@ export const useCart = () => {
     };
 
 
-    const addToCart = (product: ProductsProps) => {
+    const handleAddToCart = (product: ProductsProps) => {
         const isProductInCart = cartItem.some(item => item.id === product.id);
 
         if (isProductInCart) {
@@ -48,7 +48,7 @@ export const useCart = () => {
     };
 
     return {
-        addToCart,
+        handleAddToCart,
         updateCartItemQuantity,
         totalQuantity,
         totalPrice,

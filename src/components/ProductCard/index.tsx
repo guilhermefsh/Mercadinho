@@ -10,7 +10,7 @@ interface productProps {
 
 export const ProductCard = ({ product }: productProps) => {
 
-    const { addToCart } = useCart();
+    const { handleAddToCart } = useCart();
     const navigate = useNavigate();
 
     const handleIsNavigatePageProduct = (id: string) => {
@@ -34,7 +34,7 @@ export const ProductCard = ({ product }: productProps) => {
                         <OldPrice>{FormatCurrency(product.original_price, 'BRL')}</OldPrice>
                     )}
                     <span>{FormatCurrency(product.price, 'BRL')}</span>
-                    <button onClick={() => addToCart(product)}>Adicionar ao carrinho</button>
+                    <button onClick={() => handleAddToCart(product)}>Adicionar ao carrinho</button>
                     <button onClick={() => handleIsNavigatePageProduct(product.id)}>ver mais</button>
                 </InfoProducts>
             </div>

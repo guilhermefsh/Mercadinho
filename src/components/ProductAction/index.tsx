@@ -22,7 +22,7 @@ import {
 
 export const ProductAction = ({ viewProduct }: ViewProductProps) => {
 
-    const { addToCart } = useCart();
+    const { handleAddToCart } = useCart();
     return (
 
         <>
@@ -63,7 +63,7 @@ export const ProductAction = ({ viewProduct }: ViewProductProps) => {
 
                 <Actions>
                     <Button $variant='solid'>Comprar agora</Button>
-                    <Button onClick={() => addToCart(viewProduct)}>Adicionar ao carrinho</Button>
+                    <Button onClick={() => handleAddToCart(viewProduct)}>Adicionar ao carrinho</Button>
                 </Actions>
 
                 <Benefits>

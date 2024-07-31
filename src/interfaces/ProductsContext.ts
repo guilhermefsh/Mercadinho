@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 export interface ProductContextProps {
     search: string;
@@ -30,9 +30,7 @@ export interface ProductsDataResponse {
 
 }
 
-export interface ContextProvider {
-    children: ReactNode;
-}
+
 
 
 
