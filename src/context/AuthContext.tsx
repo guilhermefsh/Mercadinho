@@ -12,15 +12,16 @@ export const AuthProvider = ({ children }: ContextProvider) => {
 
     const SignIn = async ({ email, password }: UserProps) => {
 
-        const response = await authAPI.post('/auth', {
-            email,
-            password
-        })
+        try {
+            const response = await authAPI.post('/auth', {
+                email,
+                password
+            })
 
-        if (response.data.error) {
-            toast.error('usuário não existe, faça login para continuar!')
-            return;
-        } else {
+            if (response.data.error) {
+                toast.error('email ou senha incorretos!');
+            }
+
             const { token, user } = response.data;
             setUser(user);
             authAPI.defaults.headers.common[
@@ -29,6 +30,9 @@ export const AuthProvider = ({ children }: ContextProvider) => {
 
             localStorage.setItem("@AuthToken", token);
             localStorage.setItem("@AuthUser", JSON.stringify(user));
+
+        } catch (error) {
+            toast.error('Ocorre um erro no servidor! Tente reiniciar a página!')
         }
 
     }
