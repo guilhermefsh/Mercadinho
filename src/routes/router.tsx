@@ -3,6 +3,10 @@ import { Layout } from "../layouts";
 import { Home } from "../pages/Home";
 import { Error404 } from "../pages/404";
 import { PageProduct } from "../pages/PageProduct";
+import { Login } from "../pages/Login";
+import { Register } from "../pages/register";
+import { Purchase } from "../pages/Purchase";
+import { Private } from "./Private";
 
 
 
@@ -18,6 +22,22 @@ export const Router = createBrowserRouter([
             {
                 path: "/product/:id",
                 element: <PageProduct />
+            },
+            {
+                path: '/purchase',
+                element: <Private><Purchase /></Private>
+            }
+        ]
+    },
+    {
+        children: [
+            {
+                path: '/login',
+                element: <Login />
+            },
+            {
+                path: '/register',
+                element: <Register />
             }
         ]
     }

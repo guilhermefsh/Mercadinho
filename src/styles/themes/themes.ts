@@ -8,6 +8,7 @@ export const lightTheme = {
         primaryHover: '#1E90FF',
         red: '#e32636',
         gray: '#C4C4CC',
+        lightGray: '#D3D3D3',
         whiteNeve: '#fffafa',
         white: '#fff',
         blackColor: '#000',
@@ -19,7 +20,7 @@ export const lightTheme = {
         reputation4: '#F3FEE0',
         reputation5: '#00A650',
         blue: '#87CEEB',
-        skyblue: '#4169E1'
+        skyBlue: '#4169E1'
     }
 };
 
@@ -33,6 +34,7 @@ export const darkTheme = {
         primaryHover: '#7f7f7f',
         red: '#e32636',
         gray: '#383838',
+        lightGray: '#D3D3D3',
         whiteNeve: '#fffafa',
         white: '#fff',
         blackColor: '#000',
@@ -44,6 +46,6 @@ export const darkTheme = {
         reputation5: '#00A650',
         green: '#008000',
         blue: '#1C1C1C',
-        skyblue: '#4169E1'
+        skyBlue: '#4169E1'
     }
 };

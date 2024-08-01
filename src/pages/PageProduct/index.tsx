@@ -5,23 +5,15 @@ import { SellerInfo } from '../../components/SellerInfo'
 import { Info } from './components/Description'
 import { WarrantySection } from './components/Section'
 import { PageProductContainer, Row, Panel, Gallery, Column, ArrowLeft } from './styles'
-import { useContext, useEffect } from 'react'
-import { useFetchDetailsProducts } from '../../hooks/useFetchProducts'
-import { ProductsContext } from '../../context/ProductsContext'
 import ImageZoom from '../../components/ImageZoom'
+import { Loader } from '../../components/Loader'
+import { useFetchDetailsProducts } from '../../hooks/useFetchDetailsProduct'
 
 
 export const PageProduct = () => {
-    const { id } = useParams();
-    const { fetchDetailsProducts } = useFetchDetailsProducts()
-    const { viewProduct } = useContext(ProductsContext)
+    const { id } = useParams<string>();
+    const { data: viewProduct, isLoading } = useFetchDetailsProducts(id ?? '')
     const navigate = useNavigate();
-
-    useEffect(() => {
-        if (id) {
-            fetchDetailsProducts(id);
-        }
-    }, [id])
 
     const handleReturnPage = () => {
         navigate(-1);
@@ -38,27 +30,27 @@ export const PageProduct = () => {
                     </div>
                 </Row>
 
-                <Panel>
-                    <Column>
-                        {viewProduct.map((product) => (
-                            <Gallery key={product.id}>
+                {isLoading ? <Loader /> :
+                    <Panel>
+                        <Column>
+                            <Gallery>
                                 <ImageZoom
-                                    imageUrl={product.thumbnail.replace(/\w\.jpg/gi, 'W.jpg')}
-                                    altProduct={product.title}
+                                    imageUrl={viewProduct.thumbnail.replace(/\w\.jpg/gi, 'W.jpg')}
+                                    altProduct={viewProduct.title}
                                 />
                             </Gallery>
-                        ))}
-                        <Info />
-                    </Column>
+                            <Info />
+                        </Column>
 
-                    <Column>
-                        <ProductAction />
-                        <SellerInfo />
+                        <Column>
+                            <ProductAction viewProduct={viewProduct} />
+                            <SellerInfo />
 
-                        <WarrantySection />
-                    </Column>
-                </Panel>
+                            <WarrantySection />
+                        </Column>
+                    </Panel>}
             </PageProductContainer>
+
         </>
     )
 }

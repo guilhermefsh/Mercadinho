@@ -4,6 +4,7 @@ import { GoArrowLeft } from "react-icons/go";
 export const PageProductContainer = styled.div`
     display:flex;
     flex-direction:column;
+    margin-top:5rem;
 `
 
 export const ArrowLeft = styled(GoArrowLeft)`

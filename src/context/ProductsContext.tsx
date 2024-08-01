@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
-import { ContextProvider, ProductContextProps, ProductsProps } from "../interfaces/ProductsContext";
+import { ProductContextProps, ProductsProps } from "../interfaces/ProductsContext";
+import { ContextProvider } from "../interfaces/ContextProvider";
 
 
 export const ProductsContext = createContext({} as ProductContextProps);
@@ -8,28 +9,20 @@ export const ProductsContext = createContext({} as ProductContextProps);
 export const ProductsProvider = ({ children }: ContextProvider) => {
 
     const [cartItem, setCartItems] = useState<ProductsProps[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [products, setProducts] = useState<ProductsProps[]>([]);
     const [search, setSearch] = useState<string>('book3')
     const [sideBarVisible, setSideBarVisible] = useState(false);
-    const [viewProduct, setViewProduct] = useState<ProductsProps[]>([])
-
-
+    const [quantity, setQuantity] = useState(1);
 
     return (
         <ProductsContext.Provider value={{
-            setProducts,
-            products,
-            loading,
-            setLoading,
             search,
             setSearch,
             cartItem,
             setCartItems,
             sideBarVisible,
             setSideBarVisible,
-            viewProduct,
-            setViewProduct
+            quantity,
+            setQuantity
         }}>
             {children}
         </ProductsContext.Provider>

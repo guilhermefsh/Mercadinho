@@ -1,23 +1,36 @@
-import { CartContainer, HeaderContainer, HeaderContent, LogoContainer, SearchContent } from "./styles"
-import React, { useContext } from "react";
+import { AuthIcon, CartContainer, HeaderContainer, HeaderContent, LogoContainer, MenuList, SearchContent } from "./styles"
+import React, { useContext, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import { ProductsContext } from "../../context/ProductsContext";
-import { useFetchProducts } from "../../hooks/useFetchProducts";
 import { SideBarCart } from "../SideBarCart";
 import { ThemeToggleButton } from "../ThemeToggleButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 
 export const Header = () => {
 
-    const { setSearch, search, cartItem, setSideBarVisible, sideBarVisible } = useContext(ProductsContext);
-    const { fetchProducts } = useFetchProducts();
+    const [searchProduct, setSearchProduct] = useState('');
+    const [menuVisible, setMenuVisible] = useState(false);
 
-    function HandleSearch(e: React.FormEvent<HTMLFormElement>) {
+    const { setSearch, cartItem, setSideBarVisible, sideBarVisible } = useContext(ProductsContext);
+    const { SignOut, signed } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+
+    const HandleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        fetchProducts(search);
-        setSearch('')
+        setSearch(searchProduct)
+    }
+
+    const handleAuthIconClick = () => {
+        setMenuVisible(!menuVisible);
+    };
+
+    const handleSignOut = () => {
+        SignOut()
+        navigate('/login')
     }
 
     return (
@@ -34,8 +47,8 @@ export const Header = () => {
                         <input
                             type="text"
                             placeholder="Batedeira"
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
+                            value={searchProduct}
+                            onChange={(e) => setSearchProduct(e.target.value)}
                         />
                         <button type="submit">
                             <i><FaSearch size={14} /></i>
@@ -45,6 +58,14 @@ export const Header = () => {
 
                 <CartContainer>
                     <ThemeToggleButton />
+                    <AuthIcon onClick={handleAuthIconClick} />
+                    {menuVisible && (
+                        <MenuList>
+                            <li><Link to="/profile">Profile</Link></li>
+                            <li><Link to="/settings">Settings</Link></li>
+                            {signed ? <li onClick={handleSignOut}>Logout</li> : <li><Link to="/login">Login</Link></li>}
+                        </MenuList>
+                    )}
                     <button onClick={() => setSideBarVisible(!sideBarVisible)}>
                         <FaCartShopping size={30} color="white" />
                         {cartItem.length > 0 && <span>{cartItem.length}</span>}

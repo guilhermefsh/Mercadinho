@@ -1,14 +1,15 @@
 import { createContext, useEffect, useState } from 'react';
 import { DefaultTheme, ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '../styles/themes/themes';
-import { ThemeContextProps, ThemeProviderProps } from '../interfaces/ThemeContextProps';
+import { ThemeContextProps } from '../interfaces/ThemeContextProps';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ContextProvider } from '../interfaces/ContextProvider';
 
 
 export const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
 
-export const ThemeProvider = ({ children }: ThemeProviderProps) => {
+export const ThemeProvider = ({ children }: ContextProvider) => {
 
     const getInitialTheme = (): DefaultTheme => {
         const savedTheme = localStorage.getItem('theme');
