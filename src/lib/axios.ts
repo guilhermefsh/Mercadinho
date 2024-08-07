@@ -1,5 +1,7 @@
 import axios from "axios";
 
+// ! lembrar de verificar
+
 export const api = axios.create({
     baseURL: `https://api.mercadolibre.com/`
 })
