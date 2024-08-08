@@ -2,13 +2,13 @@ import { HomeContent, MainContainer, ProductsContainer } from "./styles"
 import { Loader } from "../../components/Loader";
 import { ProductCard } from "../../components/ProductCard";
 import { useFetchProducts } from "../../hooks/useFetchProducts";
-import { ProductsProps } from "../../interfaces/ProductsContext";
+import { ProductsProps } from "../../interfaces/CartContext";
 import { useContext } from "react";
-import { ProductsContext } from "../../context/ProductsContext";
+import { CartContext } from "../../context/CartContext";
 
 export const Home = () => {
 
-    const { search } = useContext(ProductsContext);
+    const { search } = useContext(CartContext);
     const { data: products, isLoading } = useFetchProducts(search);
 
     return (

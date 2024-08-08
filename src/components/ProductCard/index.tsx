@@ -1,8 +1,9 @@
 import { FormatCurrency } from "../../utils/formatCurrency";
 import { OldPrice, InfoProducts } from "./styles";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../../hooks/useCart";
-import { ProductsProps } from "../../interfaces/ProductsContext";
+import { ProductsProps } from "../../interfaces/CartContext";
+import { CartContext } from "../../context/CartContext";
+import { useContext } from "react";
 
 interface productProps {
     product: ProductsProps
@@ -10,7 +11,7 @@ interface productProps {
 
 export const ProductCard = ({ product }: productProps) => {
 
-    const { handleAddToCart } = useCart();
+    const { handleAddToCart } = useContext(CartContext);
     const navigate = useNavigate();
 
     const handleIsNavigatePageProduct = (id: string) => {

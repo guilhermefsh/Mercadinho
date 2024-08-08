@@ -1,20 +1,19 @@
 import { ArrowLeft, ArrowRight, Trash } from "phosphor-react"
 import { InfoContent, InfoPrice, InfoQuantity, MainContainer, ProductContent, Resume } from "./styles"
 import { useContext } from "react"
-import { ProductsContext } from "../../context/ProductsContext";
+import { CartContext } from "../../context/CartContext";
 import { FormatCurrency } from "../../utils/formatCurrency";
-import { useCart } from "../../hooks/useCart";
 
 export const Purchase = () => {
 
-    const { cartItem } = useContext(ProductsContext);
+    const { cartItem } = useContext(CartContext);
     const {
         totalPrice,
         totalQuantity,
         handleDecreaseQuantity,
         handleDeleteCartItem,
         handleIncreaseQuantity
-    } = useCart();
+    } = useContext(CartContext);
 
     return (
         <MainContainer>

@@ -1,14 +1,15 @@
 import { BsCartDashFill } from "react-icons/bs"
 import { AddNewProductContainer, CartItemContainer } from "./styles"
-import { ProductsProps } from "../../interfaces/ProductsContext"
+import { ProductsProps } from "../../interfaces/CartContext"
 import { FormatCurrency } from "../../utils/formatCurrency"
 import { ArrowLeft, ArrowRight } from "phosphor-react"
-import { useCart } from "../../hooks/useCart"
+import { useContext } from "react"
+import { CartContext } from "../../context/CartContext"
 
 
 export const CartItem = (cart: ProductsProps) => {
 
-    const { handleDecreaseQuantity, handleDeleteCartItem, handleIncreaseQuantity } = useCart()
+    const { handleDecreaseQuantity, handleDeleteCartItem, handleIncreaseQuantity } = useContext(CartContext)
 
     return (
         <CartItemContainer>

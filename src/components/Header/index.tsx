@@ -2,7 +2,7 @@ import { AuthIcon, CartContainer, HeaderContainer, HeaderContent, LogoContainer,
 import React, { useContext, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
-import { ProductsContext } from "../../context/ProductsContext";
+import { CartContext } from "../../context/CartContext";
 import { SideBarCart } from "../SideBarCart";
 import { ThemeToggleButton } from "../ThemeToggleButton";
 import { Link, useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ export const Header = () => {
     const [searchProduct, setSearchProduct] = useState('');
     const [menuVisible, setMenuVisible] = useState(false);
 
-    const { setSearch, cartItem, setSideBarVisible, sideBarVisible } = useContext(ProductsContext);
+    const { setSearch, cartItem, setSideBarVisible, sideBarVisible } = useContext(CartContext);
     const { SignOut, signed } = useContext(AuthContext);
 
     const navigate = useNavigate();

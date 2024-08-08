@@ -1,14 +1,19 @@
 import { Dispatch, SetStateAction } from "react";
 
-export interface ProductContextProps {
+export interface CartContextProps {
     search: string;
     setSearch: Dispatch<SetStateAction<string>>;
     cartItem: ProductsProps[]
-    setCartItems: Dispatch<SetStateAction<ProductsProps[]>>;
     sideBarVisible: boolean,
     setSideBarVisible: Dispatch<SetStateAction<boolean>>;
     quantity: number;
     setQuantity: Dispatch<SetStateAction<number>>;
+    handleDeleteCartItem: (id: string) => void
+    handleDecreaseQuantity: (id: string) => void
+    handleIncreaseQuantity: (id: string) => void
+    handleAddToCart: (product: ProductsProps) => void
+    totalQuantity: number,
+    totalPrice: number,
 }
 
 export interface ProductsProps {

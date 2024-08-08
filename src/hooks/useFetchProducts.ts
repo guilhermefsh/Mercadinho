@@ -1,7 +1,7 @@
 import { api } from '../lib/axios'
 import { useQuery } from '@tanstack/react-query'
 import { AxiosPromise } from 'axios'
-import { ProductsDataResponse } from '../interfaces/ProductsContext'
+import { ProductsDataResponse } from '../interfaces/CartContext'
 
 export const fetchProducts = async (query: string): AxiosPromise<ProductsDataResponse> => {
     const response = await api.get<ProductsDataResponse>('sites/MLB/search', {

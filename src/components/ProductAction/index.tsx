@@ -1,6 +1,5 @@
 import { FormatCurrency } from '../../utils/formatCurrency'
-import { useCart } from '../../hooks/useCart'
-import { ViewProductProps } from '../../interfaces/ProductsContext'
+import { ViewProductProps } from '../../interfaces/CartContext'
 import {
     Container,
     Condition,
@@ -18,11 +17,13 @@ import {
     ShieldIcon,
     PriceRow
 } from './styles'
+import { CartContext } from '../../context/CartContext'
+import { useContext } from 'react'
 
 
 export const ProductAction = ({ viewProduct }: ViewProductProps) => {
 
-    const { handleAddToCart } = useCart();
+    const { handleAddToCart } = useContext(CartContext);
     return (
 
         <>

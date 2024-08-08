@@ -1,17 +1,21 @@
 import { useContext } from "react"
 import { CartItem } from "../CartItem"
 import { CartResume, ItemsContainer, Overlay, SideBarCartContainer, TitleCart } from "./styles"
-import { ProductsContext } from "../../context/ProductsContext"
+import { CartContext } from "../../context/CartContext"
 import { FaCartShopping } from "react-icons/fa6";
 import { FormatCurrency } from "../../utils/formatCurrency";
 import { GoArrowLeft } from "react-icons/go";
 import { Link } from "react-router-dom";
-import { useCart } from "../../hooks/useCart";
 
 export const SideBarCart = () => {
 
-    const { cartItem, setSideBarVisible, sideBarVisible } = useContext(ProductsContext);
-    const { totalQuantity, totalPrice } = useCart();
+    const {
+        cartItem,
+        setSideBarVisible,
+        sideBarVisible,
+        totalQuantity,
+        totalPrice
+    } = useContext(CartContext);
 
 
 
