@@ -1,6 +1,6 @@
 import { BsCartDashFill } from "react-icons/bs"
 import { AddNewProductContainer, CartItemContainer } from "./styles"
-import { ProductsProps } from "../../interfaces/ProductsContext"
+import { ProductsProps } from "../../interfaces/ProductsTypes"
 import { FormatCurrency } from "../../utils/formatCurrency"
 import { ArrowLeft, ArrowRight } from "phosphor-react"
 import { useDispatch } from "react-redux"

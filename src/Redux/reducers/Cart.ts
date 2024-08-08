@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ProductsProps } from "../../interfaces/ProductsContext";
+import { ProductsProps } from "../../interfaces/ProductsTypes";
 import { toast } from "react-toastify";
 import { CartState, UpdateCartItemPayload } from "../../interfaces/CartTypes";
 

@@ -1,5 +1,5 @@
 import { FormatCurrency } from '../../utils/formatCurrency'
-import { ViewProductProps } from '../../interfaces/ProductsContext'
+import { ViewProductProps } from '../../interfaces/ProductsTypes'
 import {
     Container,
     Condition,

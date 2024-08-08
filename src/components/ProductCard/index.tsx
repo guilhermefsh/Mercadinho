@@ -1,7 +1,7 @@
 import { FormatCurrency } from "../../utils/formatCurrency";
 import { OldPrice, InfoProducts } from "./styles";
 import { useNavigate } from "react-router-dom";
-import { ProductsProps } from "../../interfaces/ProductsContext";
+import { ProductsProps } from "../../interfaces/ProductsTypes";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../Redux/reducers/Cart";
 

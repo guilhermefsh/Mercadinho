@@ -1,4 +1,4 @@
-import { ProductsProps } from "./ProductsContext";
+import { ProductsProps } from "./ProductsTypes";
 
 export interface UpdateCartItemPayload {
     id: string;

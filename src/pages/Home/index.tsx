@@ -1,7 +1,7 @@
 import { HomeContent, MainContainer, ProductsContainer } from "./styles"
 import { Loader } from "../../components/Loader";
 import { ProductCard } from "../../components/ProductCard";
-import { ProductsProps } from "../../interfaces/ProductsContext";
+import { ProductsProps } from "../../interfaces/ProductsTypes";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/rootReducer";
 import { useEffect } from "react";
