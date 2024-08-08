@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../Redux/rootReducer'
 import { useEffect } from 'react'
 import { fetchDetailsProductsStart, setQuery } from '../../Redux/reducers/detailProducts'
-import { fetchProductsStart } from '../../Redux/reducers/products'
 
 
 export const PageProduct = () => {
@@ -29,7 +28,6 @@ export const PageProduct = () => {
 
     const handleReturnPage = () => {
         navigate(-1);
-        dispatch(fetchProductsStart())
     }
 
     return (

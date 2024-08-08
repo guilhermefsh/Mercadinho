@@ -4,9 +4,12 @@ import { useForm } from "react-hook-form"
 import * as z from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { LoaderForm } from "../../components/LoaderForm"
-import { useContext, useEffect } from "react"
-import { AuthContext } from "../../context/AuthContext"
+
 import { toast } from "react-toastify"
+import { useAuth } from "../../hooks/useAuth"
+import { useSelector } from "react-redux"
+import { RootState } from "../../Redux/rootReducer"
+import { useEffect } from "react"
 
 const schema = z.object({
     email: z.string().email("Insira um email válido").min(1, "O campo email é obrigatório"),
@@ -17,9 +20,10 @@ type FormData = z.infer<typeof schema>
 
 export const Login = () => {
 
-    const { SignIn, signed } = useContext(AuthContext);
+    const { signIn } = useAuth()
     const navigate = useNavigate();
 
+    const signed = useSelector((state: RootState) => state.auth.signed)
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
         resolver: zodResolver(schema),
         mode: "onChange"
@@ -27,7 +31,7 @@ export const Login = () => {
 
     const handleSubmitSign = async (data: FormData) => {
         try {
-            await SignIn(data)
+            await signIn(data)
         } catch (error) {
             toast.error('Ocorreu um erro, tente novamente!');
         }

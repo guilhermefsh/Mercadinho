@@ -8,7 +8,6 @@ type ProductState = {
     loading: boolean;
     error: string | null;
     query: string
-    loaded: boolean
 }
 
 const initialState: ProductState = {
@@ -16,7 +15,6 @@ const initialState: ProductState = {
     loading: false,
     error: null,
     query: 'book3',
-    loaded: false
 };
 
 const productsSlice = createSlice({

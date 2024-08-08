@@ -6,8 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { LoaderForm } from "../../components/LoaderForm"
 import { authAPI } from "../../infra/axios"
 import { toast } from "react-toastify"
-import { useContext, useEffect } from "react"
-import { AuthContext } from "../../context/AuthContext"
+import { useAuth } from "../../hooks/useAuth"
 
 const schema = z.object({
     name: z.string().min(1, "O campo nome é obrigatório"),
@@ -20,7 +19,7 @@ type FormData = z.infer<typeof schema>
 export const Register = () => {
 
     const navigate = useNavigate();
-    const { SignIn } = useContext(AuthContext);
+    const { signIn } = useAuth()
 
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
         resolver: zodResolver(schema),
@@ -36,14 +35,12 @@ export const Register = () => {
                 return;
             }
             toast.success('Registrado com sucesso! Redirecionando para a página inicial');
-            await SignIn(data);
+            await signIn(data);
             navigate('/');
         } catch (error) {
             toast.error('Ocorreu um erro ao se registrar, tente novamente!');
         }
     }
-
-    useEffect(() => { }, [])
 
     return (
         <RegisterContainer>

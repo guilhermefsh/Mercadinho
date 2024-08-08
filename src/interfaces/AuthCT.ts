@@ -1,17 +1,16 @@
-export interface AuthContextProps {
-    SignIn: ({ email, password }: SignInCredentials) => Promise<void>;
-    SignOut: () => void;
-    user: UserProps | null;
-    signed: boolean;
-}
-
-export interface UserProps {
+export type UserProps = {
     email: string | null;
     permissions?: string[] | null;
     roles?: string[] | null;
+    token: string
 }
 
-export interface SignInCredentials {
+export type SignInCredentials = {
     email: string;
     password: string;
+}
+
+export type AuthState = {
+    user: UserProps | null
+    signed: boolean
 }

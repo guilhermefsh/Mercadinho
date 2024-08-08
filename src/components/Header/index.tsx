@@ -1,15 +1,15 @@
 import { AuthIcon, CartContainer, HeaderContainer, HeaderContent, LogoContainer, MenuList, SearchContent } from "./styles"
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
-import { ProductsContext } from "../../context/ProductsContext";
 import { SideBarCart } from "../SideBarCart";
 import { ThemeToggleButton } from "../ThemeToggleButton";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/rootReducer";
 import { fetchProductsStart, setQuery } from "../../Redux/reducers/products";
+import { sideBarVisible } from "../../Redux/reducers/sidebar";
+import { useAuth } from "../../hooks/useAuth";
 
 
 export const Header = () => {
@@ -18,9 +18,9 @@ export const Header = () => {
     const [menuVisible, setMenuVisible] = useState(false);
     const dispatch = useDispatch();
     const cartItem = useSelector((state: RootState) => state.cart.items)
+    const signed = useSelector((state: RootState) => state.auth.signed);
 
-    const { setSideBarVisible, sideBarVisible } = useContext(ProductsContext);
-    const { SignOut, signed } = useContext(AuthContext);
+    const { signOut } = useAuth()
 
     const navigate = useNavigate();
 
@@ -35,7 +35,7 @@ export const Header = () => {
     };
 
     const handleSignOut = () => {
-        SignOut()
+        signOut()
         navigate('/login')
     }
 
@@ -72,7 +72,7 @@ export const Header = () => {
                             {signed ? <li onClick={handleSignOut}>Logout</li> : <li><Link to="/login">Login</Link></li>}
                         </MenuList>
                     )}
-                    <button onClick={() => setSideBarVisible(!sideBarVisible)}>
+                    <button onClick={() => dispatch(sideBarVisible())}>
                         <FaCartShopping size={30} color="white" />
                         {cartItem.length > 0 && <span>{cartItem.length}</span>}
                     </button>
