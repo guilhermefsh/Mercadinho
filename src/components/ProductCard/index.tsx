@@ -1,8 +1,9 @@
 import { FormatCurrency } from "../../utils/formatCurrency";
 import { OldPrice, InfoProducts } from "./styles";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../../hooks/useCart";
 import { ProductsProps } from "../../interfaces/ProductsContext";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../Redux/reducers/Cart";
 
 interface productProps {
     product: ProductsProps
@@ -10,7 +11,7 @@ interface productProps {
 
 export const ProductCard = ({ product }: productProps) => {
 
-    const { handleAddToCart } = useCart();
+    const dispatch = useDispatch()
     const navigate = useNavigate();
 
     const handleIsNavigatePageProduct = (id: string) => {
@@ -34,7 +35,7 @@ export const ProductCard = ({ product }: productProps) => {
                         <OldPrice>{FormatCurrency(product.original_price, 'BRL')}</OldPrice>
                     )}
                     <span>{FormatCurrency(product.price, 'BRL')}</span>
-                    <button onClick={() => handleAddToCart(product)}>Adicionar ao carrinho</button>
+                    <button onClick={() => dispatch(addToCart(product))}>Adicionar ao carrinho</button>
                     <button onClick={() => handleIsNavigatePageProduct(product.id)}>ver mais</button>
                 </InfoProducts>
             </div>

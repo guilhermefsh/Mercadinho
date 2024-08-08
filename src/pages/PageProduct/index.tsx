@@ -7,16 +7,29 @@ import { WarrantySection } from './components/Section'
 import { PageProductContainer, Row, Panel, Gallery, Column, ArrowLeft } from './styles'
 import ImageZoom from '../../components/ImageZoom'
 import { Loader } from '../../components/Loader'
-import { useFetchDetailsProducts } from '../../hooks/useFetchDetailsProduct'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../Redux/rootReducer'
+import { useEffect } from 'react'
+import { fetchDetailsProductsStart, setQuery } from '../../Redux/reducers/detailProducts'
+import { fetchProductsStart } from '../../Redux/reducers/products'
 
 
 export const PageProduct = () => {
     const { id } = useParams<string>();
-    const { data: viewProduct, isLoading } = useFetchDetailsProducts(id ?? '')
+    const { loading, products: Product } = useSelector((state: RootState) => state.detailsProduct);
+    const dispatch = useDispatch()
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (id) {
+            dispatch(setQuery(id));
+        }
+        dispatch(fetchDetailsProductsStart());
+    }, [id, dispatch]);
 
     const handleReturnPage = () => {
         navigate(-1);
+        dispatch(fetchProductsStart())
     }
 
     return (
@@ -30,25 +43,27 @@ export const PageProduct = () => {
                     </div>
                 </Row>
 
-                {isLoading ? <Loader /> :
-                    <Panel>
-                        <Column>
-                            <Gallery>
-                                <ImageZoom
-                                    imageUrl={viewProduct.thumbnail.replace(/\w\.jpg/gi, 'W.jpg')}
-                                    altProduct={viewProduct.title}
-                                />
-                            </Gallery>
-                            <Info />
-                        </Column>
+                {loading ? <Loader /> :
+                    Product.map(viewProduct =>
+                        <Panel key={viewProduct.id}>
+                            <Column>
+                                <Gallery>
+                                    <ImageZoom
+                                        imageUrl={viewProduct.thumbnail.replace(/\w\.jpg/gi, 'W.jpg')}
+                                        altProduct={viewProduct.title}
+                                    />
+                                </Gallery>
+                                <Info />
+                            </Column>
 
-                        <Column>
-                            <ProductAction viewProduct={viewProduct} />
-                            <SellerInfo />
+                            <Column>
+                                <ProductAction viewProduct={viewProduct} />
+                                <SellerInfo />
 
-                            <WarrantySection />
-                        </Column>
-                    </Panel>}
+                                <WarrantySection />
+                            </Column>
+                        </Panel>
+                    )}
             </PageProductContainer>
 
         </>

@@ -1,4 +1,4 @@
-import { api } from '../lib/axios'
+import { api } from '../infra/axios'
 import { useQuery } from '@tanstack/react-query'
 import { AxiosPromise } from 'axios'
 import { ProductsDataResponse } from '../interfaces/ProductsContext'

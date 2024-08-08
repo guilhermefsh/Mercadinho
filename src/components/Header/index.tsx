@@ -7,21 +7,27 @@ import { SideBarCart } from "../SideBarCart";
 import { ThemeToggleButton } from "../ThemeToggleButton";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../Redux/rootReducer";
+import { fetchProductsStart, setQuery } from "../../Redux/reducers/products";
 
 
 export const Header = () => {
 
     const [searchProduct, setSearchProduct] = useState('');
     const [menuVisible, setMenuVisible] = useState(false);
+    const dispatch = useDispatch();
+    const cartItem = useSelector((state: RootState) => state.cart.items)
 
-    const { setSearch, cartItem, setSideBarVisible, sideBarVisible } = useContext(ProductsContext);
+    const { setSideBarVisible, sideBarVisible } = useContext(ProductsContext);
     const { SignOut, signed } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
     const HandleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        setSearch(searchProduct)
+        dispatch(setQuery(searchProduct))
+        dispatch(fetchProductsStart());
     }
 
     const handleAuthIconClick = () => {

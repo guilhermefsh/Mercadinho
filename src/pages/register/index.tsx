@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form"
 import * as z from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { LoaderForm } from "../../components/LoaderForm"
-import { authAPI } from "../../lib/axios"
+import { authAPI } from "../../infra/axios"
 import { toast } from "react-toastify"
 import { useContext, useEffect } from "react"
 import { AuthContext } from "../../context/AuthContext"

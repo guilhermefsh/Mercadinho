@@ -1,15 +1,22 @@
 import { HomeContent, MainContainer, ProductsContainer } from "./styles"
 import { Loader } from "../../components/Loader";
 import { ProductCard } from "../../components/ProductCard";
-import { useFetchProducts } from "../../hooks/useFetchProducts";
 import { ProductsProps } from "../../interfaces/ProductsContext";
-import { useContext } from "react";
-import { ProductsContext } from "../../context/ProductsContext";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../Redux/rootReducer";
+import { useEffect } from "react";
+import { fetchProductsStart } from "../../Redux/reducers/products";
+
 
 export const Home = () => {
 
-    const { search } = useContext(ProductsContext);
-    const { data: products, isLoading } = useFetchProducts(search);
+    const { loading, products } = useSelector((state: RootState) => state.products);
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(fetchProductsStart())
+    }, [dispatch])
+
 
     return (
         <MainContainer>
@@ -17,11 +24,11 @@ export const Home = () => {
 
                 <h1>Seu produto está aqui!</h1>
 
-                {isLoading ? (
+                {loading ? (
                     <Loader />
                 ) : (
                     <ProductsContainer>
-                        {products?.results.map((product: ProductsProps) => (
+                        {products.map((product: ProductsProps) => (
                             <ProductCard key={product.id} product={product} />
                         ))}
                     </ProductsContainer>)}

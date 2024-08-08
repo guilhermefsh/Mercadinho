@@ -1,20 +1,15 @@
 import { ArrowLeft, ArrowRight, Trash } from "phosphor-react"
 import { InfoContent, InfoPrice, InfoQuantity, MainContainer, ProductContent, Resume } from "./styles"
-import { useContext } from "react"
-import { ProductsContext } from "../../context/ProductsContext";
 import { FormatCurrency } from "../../utils/formatCurrency";
-import { useCart } from "../../hooks/useCart";
+import { useDispatch, useSelector } from "react-redux";
+import { decreaseQuantity, deleteCartItem, increaseQuantity } from "../../Redux/reducers/Cart";
+import { RootState } from "../../Redux/rootReducer";
 
 export const Purchase = () => {
-
-    const { cartItem } = useContext(ProductsContext);
-    const {
-        totalPrice,
-        totalQuantity,
-        handleDecreaseQuantity,
-        handleDeleteCartItem,
-        handleIncreaseQuantity
-    } = useCart();
+    const dispatch = useDispatch()
+    const cartItem = useSelector((state: RootState) => state.cart.items);
+    const totalQuantity = useSelector((state: RootState) => state.cart.totalQuantity);
+    const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
 
     return (
         <MainContainer>
@@ -30,9 +25,9 @@ export const Purchase = () => {
                                     <p>{product.title}</p>
                                 </div>
                                 <InfoQuantity>
-                                    <i><ArrowLeft onClick={() => handleDecreaseQuantity(product.id)} /></i>
+                                    <i><ArrowLeft onClick={() => dispatch(decreaseQuantity(product.id))} /></i>
                                     {product.quantity ? <p>{product.quantity}</p> : <p>1</p>}
-                                    <i><ArrowRight onClick={() => handleIncreaseQuantity((product.id))} /></i>
+                                    <i><ArrowRight onClick={() => dispatch(increaseQuantity(product.id))} /></i>
                                 </InfoQuantity>
                             </InfoContent>
                             <InfoPrice>
@@ -40,7 +35,7 @@ export const Purchase = () => {
                                     <Trash
                                         size={30}
                                         color="red"
-                                        onClick={() => handleDeleteCartItem(product.id)}
+                                        onClick={() => dispatch(deleteCartItem(product.id))}
                                     />
                                 </i>
                                 {product.quantity ?

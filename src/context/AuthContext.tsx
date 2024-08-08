@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { AuthContextProps, SignInCredentials, UserProps } from "../interfaces/AuthCT";
-import { authAPI } from "../lib/axios";
+import { authAPI } from "../infra/axios";
 import { toast } from "react-toastify";
 import { ContextProvider } from "../interfaces/ContextProvider";
 

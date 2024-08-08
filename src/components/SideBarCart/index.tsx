@@ -6,14 +6,15 @@ import { FaCartShopping } from "react-icons/fa6";
 import { FormatCurrency } from "../../utils/formatCurrency";
 import { GoArrowLeft } from "react-icons/go";
 import { Link } from "react-router-dom";
-import { useCart } from "../../hooks/useCart";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Redux/rootReducer";
 
 export const SideBarCart = () => {
 
-    const { cartItem, setSideBarVisible, sideBarVisible } = useContext(ProductsContext);
-    const { totalQuantity, totalPrice } = useCart();
-
-
+    const { setSideBarVisible, sideBarVisible } = useContext(ProductsContext);
+    const cartItem = useSelector((state: RootState) => state.cart.items)
+    const totalQuantity = useSelector((state: RootState) => state.cart.totalQuantity);
+    const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
 
     return (
         <>

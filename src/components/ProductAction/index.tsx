@@ -1,5 +1,4 @@
 import { FormatCurrency } from '../../utils/formatCurrency'
-import { useCart } from '../../hooks/useCart'
 import { ViewProductProps } from '../../interfaces/ProductsContext'
 import {
     Container,
@@ -18,11 +17,13 @@ import {
     ShieldIcon,
     PriceRow
 } from './styles'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../../Redux/reducers/Cart'
 
 
 export const ProductAction = ({ viewProduct }: ViewProductProps) => {
 
-    const { handleAddToCart } = useCart();
+    const dispatch = useDispatch()
     return (
 
         <>
@@ -63,7 +64,7 @@ export const ProductAction = ({ viewProduct }: ViewProductProps) => {
 
                 <Actions>
                     <Button $variant='solid'>Comprar agora</Button>
-                    <Button onClick={() => handleAddToCart(viewProduct)}>Adicionar ao carrinho</Button>
+                    <Button onClick={() => dispatch(addToCart(viewProduct))}>Adicionar ao carrinho</Button>
                 </Actions>
 
                 <Benefits>
